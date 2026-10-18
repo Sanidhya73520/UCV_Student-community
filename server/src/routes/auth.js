@@ -27,13 +27,19 @@ const DUMMY_HASH = '$2a$12$e8p4l8ZfVbN7g8xQ2j9Esu1Y9f1b2c3d4e5f6g7h8i9j0k1l2m3n4
 
 // Helper to set session cookie
 function setSessionCookie(res, token, maxAgeMs) {
+  // res.cookie('ucv_sid', token, {
+  //   httpOnly: true,
+  //   sameSite: 'lax',
+  //   secure: env.NODE_ENV === 'production',
+  //   maxAge: maxAgeMs,
+  //   path: '/'
+  // });
   res.cookie('ucv_sid', token, {
-    httpOnly: true,
-    sameSite: 'lax',
-    secure: env.NODE_ENV === 'production',
-    maxAge: maxAgeMs,
-    path: '/'
-  });
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+  path: '/',
+});
 }
 
 // 1. Sign Up (Students only)
