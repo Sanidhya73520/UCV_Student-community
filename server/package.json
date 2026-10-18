@@ -1,0 +1,42 @@
+{
+  "name": "ucv-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon --watch src --watch ../shared src/index.js",
+    "start": "node src/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "seed:admin": "node scripts/seed-admin.js",
+    "seed:content": "node scripts/seed-content.js",
+    "seed:demo": "node scripts/seed-demo.js",
+    "make:admin": "node scripts/make-admin.js",
+    "mail:test": "node scripts/mail-test.js",
+    "backup": "node scripts/backup.js",
+    "restore": "node scripts/restore.js"
+  },
+  "dependencies": {
+    "bcryptjs": "3.0.2",
+    "cookie-parser": "1.4.7",
+    "cors": "2.8.5",
+    "csv-parse": "5.6.0",
+    "dotenv": "16.4.7",
+    "exceljs": "4.4.0",
+    "express": "4.21.2",
+    "helmet": "8.0.0",
+    "i18n-iso-countries": "7.13.0",
+    "mongoose": "8.10.1",
+    "multer": "1.4.5-lts.1",
+    "nodemailer": "6.10.0",
+    "pdfkit": "0.16.0",
+    "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "10.1.4",
+    "nodemon": "3.1.9",
+    "supertest": "7.0.0",
+    "vitest": "3.0.7"
+  }
+}

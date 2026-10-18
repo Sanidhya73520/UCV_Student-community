@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Website: Ambassador programme</title>
+<!-- design-tool preview file: reference only, see docs/SCREENS.md -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#F2F3F6;font-family:'Atkinson Hyperlegible',Verdana,sans-serif;color:#18203A}
+a{color:#B42318}a:hover{color:#8F1B12}
+:focus-visible{outline:3px solid #E0A200;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1300px; background: #F2F3F6; display: flex; flex-direction: column; overflow: hidden; font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; color: #18203A">
+<svg width="1440" height="28" viewBox="0 0 1440 28" aria-hidden="true" style="display: block; flex-shrink: 0"><defs><pattern id="stitch" x="0" y="0" width="40" height="28" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="40" height="28" fill="#FFFFFF"></rect><rect x="8" y="4" width="4" height="4" fill="#B42318"></rect><rect x="4" y="8" width="4" height="4" fill="#B42318"></rect><rect x="12" y="8" width="4" height="4" fill="#B42318"></rect><rect x="0" y="12" width="4" height="4" fill="#B42318"></rect><rect x="8" y="12" width="4" height="4" fill="#E0A200"></rect><rect x="16" y="12" width="4" height="4" fill="#B42318"></rect><rect x="4" y="16" width="4" height="4" fill="#B42318"></rect><rect x="12" y="16" width="4" height="4" fill="#B42318"></rect><rect x="8" y="20" width="4" height="4" fill="#B42318"></rect><rect x="24" y="8" width="4" height="4" fill="#18203A"></rect><rect x="32" y="8" width="4" height="4" fill="#18203A"></rect><rect x="28" y="12" width="4" height="4" fill="#18203A"></rect><rect x="24" y="16" width="4" height="4" fill="#18203A"></rect><rect x="32" y="16" width="4" height="4" fill="#18203A"></rect></pattern></defs><rect x="0" y="0" width="1440" height="28" fill="url(#stitch)"></rect></svg>
+<header style="position: relative; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 84px; padding: 0 56px; background: #FFFFFF; border-bottom: 1px solid #D9DDE6; flex-shrink: 0">
+<a href="SiteHome.dc.html" aria-label="UCV International Student Community, home" style="display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0"><img src="../assets/community-logo.png" alt="UCV International Student Community" style="width: 96px; height: 56px; display: block; object-fit: contain"><span aria-hidden="true" style="width: 1px; height: 40px; background: rgba(24, 32, 58, 0.25)"></span><img src="../assets/ucv-crest.png" alt="University of Craiova" style="width: 38px; height: 52px; display: block; object-fit: contain"></a>
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 2px">
+<a href="SiteHome.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Home</a>
+<a href="SiteMap.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Where we're from</a>
+<a href="SiteClub.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Clubs</a>
+<a href="SiteCalendar-uat1.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Calendar</a>
+<a href="SiteWall.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Wall</a>
+<a href="SiteWord.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Learn a word</a>
+<a href="SiteAmbassadors.dc.html" aria-current="page" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; background: #E4E9F4; color: #18203A; font-weight: 700">Ambassadors</a>
+</nav>
+<div style="position: relative; flex-shrink: 0">
+<button type="button" aria-haspopup="menu" aria-expanded="{{joinOpen}}" onClick="{{toggleJoin}}" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: #B42318; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 15px">Join the community<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+<sc-if value="{{joinOpen}}" hint-placeholder-val="{{ true }}">
+<div role="menu" style="position: absolute; right: 0; top: 54px; width: 280px; padding: 8px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; gap: 6px; z-index: 5">
+<a role="menuitem" href="SiteSignIn.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #FBEAE8; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Student login</span><span style="font-size: 13px; color: #4A536B">Sign in or sign up</span></a>
+<a role="menuitem" href="StaffLogin.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #F2F3F6; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Staff login</span><span style="font-size: 13px; color: #4A536B">International Relations team</span></a>
+</div>
+</sc-if>
+</div>
+</header>
+<main style="flex-grow: 1; display: flex; flex-direction: column; gap: 40px; padding: 48px 64px 64px">
+<section style="display: flex; align-items: center; gap: 56px">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 18px">
+<span style="font-size: 17px; font-weight: 700; color: #B42318">UCV International Student Ambassadors</span>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 60px; line-height: 64px; letter-spacing: -1.5px">Be the first friendly face in Craiova</h1>
+<p style="margin: 0; max-width: 560px; font-size: 19px; line-height: 29px; color: #2E3650">Ambassadors welcome new students, help run our events and keep the community going from one semester to the next. International and Romanian students are both welcome.</p>
+</div>
+<aside style="width: 460px; flex-shrink: 0; display: flex; flex-direction: column; gap: 14px; padding: 34px; border-radius: 24px; background: #18203A; color: #FFFFFF">
+<span style="font-size: 15px; font-weight: 700; color: #F2B705">Applications are open</span>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px; color: #FFFFFF">We're looking for 10 to 15 ambassadors this year</span>
+<span style="font-size: 17px; line-height: 26px; color: #E4E9F4">International and Romanian students, from any faculty. Apply by [date].</span>
+<a href="SiteSignIn.dc.html" style="display: flex; align-items: center; justify-content: center; height: 54px; margin-top: 6px; border-radius: 12px; background: #F2B705; color: #18203A; font-weight: 700; font-size: 17px; text-decoration: none">Apply to be an ambassador</a>
+</aside>
+</section>
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 34px; line-height: 40px">What ambassadors do</h2>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{duties}}" as="d" hint-placeholder-count="6">
+<div style="display: flex; gap: 16px; align-items: flex-start; padding: 22px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; background: #FDF3D3; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 700; font-size: 18px; line-height: 24px">{{d.title}}</span><span style="font-size: 15px; line-height: 22px; color: #4A536B">{{d.text}}</span></div>
+</div>
+</sc-for>
+</div>
+</section>
+<div style="display: flex; gap: 20px">
+<section style="flex: 1 1 0; display: flex; flex-direction: column; gap: 16px; padding: 30px; border-radius: 22px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 28px; line-height: 34px">How it works</h2>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px">
+<li style="display: flex; gap: 14px; align-items: flex-start; font-size: 17px; line-height: 25px"><span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: #18203A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700">1</span>Apply with the short form, or tick "ambassador" when you join</li>
+<li style="display: flex; gap: 14px; align-items: flex-start; font-size: 17px; line-height: 25px"><span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: #18203A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700">2</span>Have a short chat with the International Relations team</li>
+<li style="display: flex; gap: 14px; align-items: flex-start; font-size: 17px; line-height: 25px"><span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: #18203A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700">3</span>Join the ambassadors' WhatsApp group</li>
+<li style="display: flex; gap: 14px; align-items: flex-start; font-size: 17px; line-height: 25px"><span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: #18203A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700">4</span>Come to the first meeting and pick your role</li>
+</ol>
+</section>
+<section style="flex: 1 1 0; display: flex; flex-direction: column; gap: 16px; padding: 30px; border-radius: 22px; background: #18203A; color: #FFFFFF">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 28px; line-height: 34px; color: #FFFFFF">First meeting</h2>
+<span style="font-size: 16px; color: #C9D0E4">[Date and time], [Venue], about one hour</span>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 17px; line-height: 25px; color: #E4E9F4">
+<li>Meet the team and the International Relations office</li>
+<li>Roles: club hosts, buddies, event helpers, promotion</li>
+<li>Plan for the welcome evening on 21 October</li>
+<li>Ideas for the year and how we stay in touch</li>
+</ul>
+</section>
+<section style="flex: 1 1 0; display: flex; flex-direction: column; gap: 16px; padding: 30px; border-radius: 22px; background: #FDF3D3">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 28px; line-height: 34px">What you get</h2>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 17px; line-height: 25px; color: #2E3650">
+<li>Friends from all over the world</li>
+<li>Leadership and event experience for your CV</li>
+<li>A volunteering certificate from the International Relations office [to confirm]</li>
+</ul>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const __b = this._rv();
+    const __s = this.state || {};
+    return Object.assign({}, __b, { joinOpen: !!__s.joinOpen, toggleJoin: () => this.setState({ joinOpen: !__s.joinOpen }) });
+  }
+  _rv() {
+    return {
+      duties: [
+        { title: 'Welcome new students', text: 'Be a friendly contact in their first weeks in Craiova.' },
+        { title: 'Promote activities', text: 'Share events with your faculty, hostel and friends.' },
+        { title: 'Help organise events', text: 'Set up, check people in and host club meetings.' },
+        { title: 'Bring people in', text: 'Invite students from your country or faculty.' },
+        { title: 'Suggest ideas', text: 'Tell us what students would love to do next.' },
+        { title: 'Help newcomers settle in', text: 'Answer questions and help people feel at home.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

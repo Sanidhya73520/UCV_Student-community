@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Website 5: International Wall</title>
+<!-- design-tool preview file: reference only, see docs/SCREENS.md -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#F2F3F6;font-family:'Atkinson Hyperlegible',Verdana,sans-serif;color:#18203A}
+a{color:#B42318}a:hover{color:#8F1B12}
+:focus-visible{outline:3px solid #E0A200;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1420px; background: #F2F3F6; display: flex; flex-direction: column; overflow: hidden; font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; color: #18203A">
+<svg width="1440" height="28" viewBox="0 0 1440 28" aria-hidden="true" style="display: block; flex-shrink: 0"><defs><pattern id="stitch" x="0" y="0" width="40" height="28" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="40" height="28" fill="#FFFFFF"></rect><rect x="8" y="4" width="4" height="4" fill="#B42318"></rect><rect x="4" y="8" width="4" height="4" fill="#B42318"></rect><rect x="12" y="8" width="4" height="4" fill="#B42318"></rect><rect x="0" y="12" width="4" height="4" fill="#B42318"></rect><rect x="8" y="12" width="4" height="4" fill="#E0A200"></rect><rect x="16" y="12" width="4" height="4" fill="#B42318"></rect><rect x="4" y="16" width="4" height="4" fill="#B42318"></rect><rect x="12" y="16" width="4" height="4" fill="#B42318"></rect><rect x="8" y="20" width="4" height="4" fill="#B42318"></rect><rect x="24" y="8" width="4" height="4" fill="#18203A"></rect><rect x="32" y="8" width="4" height="4" fill="#18203A"></rect><rect x="28" y="12" width="4" height="4" fill="#18203A"></rect><rect x="24" y="16" width="4" height="4" fill="#18203A"></rect><rect x="32" y="16" width="4" height="4" fill="#18203A"></rect></pattern></defs><rect x="0" y="0" width="1440" height="28" fill="url(#stitch)"></rect></svg>
+<header style="position: relative; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 84px; padding: 0 56px; background: #FFFFFF; border-bottom: 1px solid #D9DDE6; flex-shrink: 0">
+<a href="SiteHome.dc.html" aria-label="UCV International Student Community, home" style="display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0"><img src="../assets/community-logo.png" alt="UCV International Student Community" style="width: 96px; height: 56px; display: block; object-fit: contain"><span aria-hidden="true" style="width: 1px; height: 40px; background: rgba(24, 32, 58, 0.25)"></span><img src="../assets/ucv-crest.png" alt="University of Craiova" style="width: 38px; height: 52px; display: block; object-fit: contain"></a>
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 2px">
+<a href="SiteHome.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Home</a>
+<a href="SiteMap.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Where we're from</a>
+<a href="SiteClub.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Clubs</a>
+<a href="SiteCalendar-uat1.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Calendar</a>
+<a href="SiteWall.dc.html" aria-current="page" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; background: #E4E9F4; color: #18203A; font-weight: 700">Wall</a>
+<a href="SiteWord.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Learn a word</a>
+<a href="SiteAmbassadors.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Ambassadors</a>
+</nav>
+<div style="position: relative; flex-shrink: 0">
+<button type="button" aria-haspopup="menu" aria-expanded="{{joinOpen}}" onClick="{{toggleJoin}}" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: #B42318; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 15px">Join the community<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+<sc-if value="{{joinOpen}}" hint-placeholder-val="{{ true }}">
+<div role="menu" style="position: absolute; right: 0; top: 54px; width: 280px; padding: 8px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; gap: 6px; z-index: 5">
+<a role="menuitem" href="SiteSignIn.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #FBEAE8; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Student login</span><span style="font-size: 13px; color: #4A536B">Sign in or sign up</span></a>
+<a role="menuitem" href="StaffLogin.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #F2F3F6; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Staff login</span><span style="font-size: 13px; color: #4A536B">International Relations team</span></a>
+</div>
+</sc-if>
+</div>
+</header>
+<main style="flex-grow: 1; display: flex; flex-direction: column; gap: 28px; padding: 44px 56px 56px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 52px; line-height: 58px; letter-spacing: -1px">International Wall</h1>
+<p style="margin: 0; font-size: 19px; line-height: 28px; color: #2E3650">One question every month. In June, all the answers become the story of our community.</p>
+</div>
+<section style="display: flex; gap: 40px; align-items: center; padding: 40px; border-radius: 28px; background: #18203A; color: #FFFFFF">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 16px; font-weight: 700; color: #F2B705">October question</span>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 44px; line-height: 50px; letter-spacing: -1px; color: #FFFFFF">What do you hope to discover in Romania?</h2>
+</div>
+<div style="width: 440px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; padding: 26px; border-radius: 18px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18)">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #FFFFFF">Want to add your answer?</span>
+<span style="font-size: 16px; line-height: 24px; color: #C9D0E4">Log in as a student to post on the wall. The team reads every answer before it goes up.</span>
+<a href="SiteSignIn.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border-radius: 12px; background: #F2B705; color: #18203A; font-weight: 700; font-size: 16px; text-decoration: none">Student login</a>
+</div>
+</section>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px">What our members said</h2>
+<span style="font-size: 15px; color: #4A536B">Sample answers</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px">
+<sc-for list="{{answers}}" as="a" hint-placeholder-count="6">
+<article style="display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 20px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 44px; height: 44px; border-radius: 50%; background: {{a.tint}}; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px">{{a.initial}}</span>
+<div style="display: flex; flex-direction: column"><span style="font-weight: 700; font-size: 16px">{{a.name}}</span><span style="font-size: 14px; color: #4A536B">{{a.country}}</span></div>
+</div>
+<p style="margin: 0; font-size: 18px; line-height: 27px">{{a.text}}</p>
+<button type="button" aria-pressed="{{a.on}}" onClick="{{a.toggle}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{a.border}}; background: {{a.bg}}; color: {{a.color}}; font-family: inherit; font-weight: 700; font-size: 15px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg>Me too <span style="font-weight: 400">({{a.count}})</span></button>
+</article>
+</sc-for>
+</div>
+<section style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px">This year's questions</h2>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 20px; border-radius: 18px; background: #18203A; color: #FFFFFF">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span style="font-weight: 700; font-size: 15px; color: #F2B705">October</span><span style="font-size: 13px; color: #C9D0E4">Now open</span></div>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 19px; line-height: 25px">What do you hope to discover in Romania?</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 20px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span style="font-weight: 700; font-size: 15px; color: #4A536B">November</span><span style="font-size: 13px; color: #4A536B">Coming soon</span></div>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 19px; line-height: 25px">What does "home" mean to you?</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 20px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span style="font-weight: 700; font-size: 15px; color: #4A536B">December</span><span style="font-size: 13px; color: #4A536B">Coming soon</span></div>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 19px; line-height: 25px">What tradition from your country would you share?</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 20px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span style="font-weight: 700; font-size: 15px; color: #4A536B">January</span><span style="font-size: 13px; color: #4A536B">Coming soon</span></div>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 19px; line-height: 25px">What should universities look like in 2030?</span>
+</div>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1420}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const __b = this._rv();
+    const __s = this.state || {};
+    return Object.assign({}, __b, { joinOpen: !!__s.joinOpen, toggleJoin: () => this.setState({ joinOpen: !__s.joinOpen }) });
+  }
+  _rv() {
+    const s = this.state || {};
+    const liked = s.liked || {};
+    const data = [
+      ['C', '#E4E9F4', 'Camille', 'France', 'The Carpathians. Everyone says they are close enough for a weekend trip.', 8],
+      ['A', '#FDF3D3', 'Aarav', 'India', 'What Romanian families actually cook at home, not just what restaurants serve.', 11],
+      ['M', '#FBEAE8', 'Mateo', 'Argentina', 'How people celebrate winter here. Back home, Christmas is in the middle of summer.', 6],
+      ['E', '#FDF3D3', 'Elif', 'Türkiye', 'Enough Romanian to order a coffee without switching to English.', 14],
+      ['L', '#FBEAE8', 'Lucía', 'Spain', 'The painted monasteries I have seen in photos since school.', 5],
+      ['G', '#E4E9F4', 'Giulia', 'Italy', 'Craiova\'s parks. I hear Romanescu Park is beautiful in autumn.', 9]
+    ];
+    const answers = data.map((d, i) => {
+      const on = !!liked[i];
+      return {
+        initial: d[0], tint: d[1], name: d[2], country: d[3], text: d[4],
+        count: d[5] + (on ? 1 : 0),
+        border: on ? '#B42318' : '#D9DDE6', color: on ? '#B42318' : '#18203A', bg: on ? '#FBEAE8' : '#FFFFFF',
+        on: on,
+        toggle: () => this.setState({ liked: Object.assign({}, liked, { [i]: !on }) })
+      };
+    });
+    return { answers: answers };
+  }
+}
+</script>
+</body>
+</html>

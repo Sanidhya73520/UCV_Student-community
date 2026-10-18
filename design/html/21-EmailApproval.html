@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Email: student account approved</title>
+<!-- design-tool preview file: reference only, see docs/SCREENS.md -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#E9ECF2;font-family:'Atkinson Hyperlegible',Verdana,sans-serif;color:#18203A}
+a{color:#B42318}a:hover{color:#8F1B12}
+:focus-visible{outline:3px solid #E0A200;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 900px; height: 1000px; background: #E9ECF2; display: flex; flex-direction: column; overflow: hidden; font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; color: #18203A">
+<main style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 40px">
+<div style="width: 680px; display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; border-radius: 14px; background: #FFFFFF; border: 1px solid #D9DDE6; font-size: 14px">
+<span><strong>From:</strong> UCV International Student Community &lt;[no-reply address]&gt;</span>
+<span><strong>To:</strong> Lucía Fernández &lt;lucia.fernandez@example.com&gt;</span>
+<span><strong>Subject:</strong> Your account is approved: welcome to the community!</span>
+</div>
+<article style="width: 680px; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; background: #FFFFFF; border: 1px solid #D9DDE6">
+<svg width="680" height="28" viewBox="0 0 680 28" aria-hidden="true" style="display: block; flex-shrink: 0"><defs><pattern id="stitch" x="0" y="0" width="40" height="28" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="40" height="28" fill="#FFFFFF"></rect><rect x="8" y="4" width="4" height="4" fill="#B42318"></rect><rect x="4" y="8" width="4" height="4" fill="#B42318"></rect><rect x="12" y="8" width="4" height="4" fill="#B42318"></rect><rect x="0" y="12" width="4" height="4" fill="#B42318"></rect><rect x="8" y="12" width="4" height="4" fill="#E0A200"></rect><rect x="16" y="12" width="4" height="4" fill="#B42318"></rect><rect x="4" y="16" width="4" height="4" fill="#B42318"></rect><rect x="12" y="16" width="4" height="4" fill="#B42318"></rect><rect x="8" y="20" width="4" height="4" fill="#B42318"></rect><rect x="24" y="8" width="4" height="4" fill="#18203A"></rect><rect x="32" y="8" width="4" height="4" fill="#18203A"></rect><rect x="28" y="12" width="4" height="4" fill="#18203A"></rect><rect x="24" y="16" width="4" height="4" fill="#18203A"></rect><rect x="32" y="16" width="4" height="4" fill="#18203A"></rect></pattern></defs><rect x="0" y="0" width="680" height="28" fill="url(#stitch)"></rect></svg>
+<div style="display: flex; align-items: center; gap: 14px; padding: 22px 36px; border-bottom: 1px solid #E6E9F0"><img src="../assets/community-logo.png" alt="UCV International Student Community" style="width: 96px; height: 56px; object-fit: contain"><span aria-hidden="true" style="width: 1px; height: 40px; background: rgba(24, 32, 58, 0.25)"></span><img src="../assets/ucv-crest.png" alt="University of Craiova" style="width: 38px; height: 52px; object-fit: contain"></div>
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 34px 36px">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px">Welcome, Lucía! Your account is approved</h1>
+<p style="margin: 0; font-size: 16px; line-height: 26px; color: #2E3650">Good news: the International Relations Office has approved your registration for the UCV International Student Community.</p><p style="margin: 0; font-size: 16px; line-height: 26px; color: #2E3650">You can now sign in with the email and password you chose when you signed up.</p>
+
+<a href="SiteSignIn.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; height: 54px; padding: 0 28px; border-radius: 12px; background: #B42318; color: #FFFFFF; font-weight: 700; font-size: 17px; text-decoration: none">Log In to Portal</a>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #4A536B">Button not working? Copy this link: [website address]/sitesignin</p>
+</div>
+<div style="padding: 18px 36px; background: #F2F3F6; font-size: 13px; line-height: 20px; color: #4A536B">International Relations Office, University of Craiova. You're receiving this because you signed up for the UCV International Student Community.</div>
+</article>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":900,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

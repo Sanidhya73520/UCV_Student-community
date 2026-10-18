@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Website: Student sign up</title>
+<!-- design-tool preview file: reference only, see docs/SCREENS.md -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#F2F3F6;font-family:'Atkinson Hyperlegible',Verdana,sans-serif;color:#18203A}
+a{color:#B42318}a:hover{color:#8F1B12}
+:focus-visible{outline:3px solid #E0A200;outline-offset:2px}
+@keyframes ring{0%{transform:scale(.6);opacity:1}100%{transform:scale(2.4);opacity:0}}
+.pulse{animation:ring 2.2s ease-out infinite}
+@media (prefers-reduced-motion: reduce){.pulse{animation:none}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1100px; background: #F2F3F6; display: flex; flex-direction: column; overflow: hidden; font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; color: #18203A">
+<svg width="1440" height="28" viewBox="0 0 1440 28" aria-hidden="true" style="display: block; flex-shrink: 0"><defs><pattern id="stitch" x="0" y="0" width="40" height="28" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="40" height="28" fill="#FFFFFF"></rect><rect x="8" y="4" width="4" height="4" fill="#B42318"></rect><rect x="4" y="8" width="4" height="4" fill="#B42318"></rect><rect x="12" y="8" width="4" height="4" fill="#B42318"></rect><rect x="0" y="12" width="4" height="4" fill="#B42318"></rect><rect x="8" y="12" width="4" height="4" fill="#E0A200"></rect><rect x="16" y="12" width="4" height="4" fill="#B42318"></rect><rect x="4" y="16" width="4" height="4" fill="#B42318"></rect><rect x="12" y="16" width="4" height="4" fill="#B42318"></rect><rect x="8" y="20" width="4" height="4" fill="#B42318"></rect><rect x="24" y="8" width="4" height="4" fill="#18203A"></rect><rect x="32" y="8" width="4" height="4" fill="#18203A"></rect><rect x="28" y="12" width="4" height="4" fill="#18203A"></rect><rect x="24" y="16" width="4" height="4" fill="#18203A"></rect><rect x="32" y="16" width="4" height="4" fill="#18203A"></rect></pattern></defs><rect x="0" y="0" width="1440" height="28" fill="url(#stitch)"></rect></svg>
+<header style="position: relative; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 84px; padding: 0 56px; background: #FFFFFF; border-bottom: 1px solid #D9DDE6; flex-shrink: 0">
+<a href="SiteHome.dc.html" aria-label="UCV International Student Community, home" style="display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0"><img src="../assets/community-logo.png" alt="UCV International Student Community" style="width: 96px; height: 56px; display: block; object-fit: contain"><span aria-hidden="true" style="width: 1px; height: 40px; background: rgba(24, 32, 58, 0.25)"></span><img src="../assets/ucv-crest.png" alt="University of Craiova" style="width: 38px; height: 52px; display: block; object-fit: contain"></a>
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 2px">
+<a href="SiteHome.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Home</a>
+<a href="SiteMap.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Where we're from</a>
+<a href="SiteClub.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Clubs</a>
+<a href="SiteCalendar-uat1.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Calendar</a>
+<a href="SiteWall.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Wall</a>
+<a href="SiteWord.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Learn a word</a>
+<a href="SiteAmbassadors.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Ambassadors</a>
+</nav>
+<div style="position: relative; flex-shrink: 0">
+<button type="button" aria-haspopup="menu" aria-expanded="{{joinOpen}}" onClick="{{toggleJoin}}" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: #B42318; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 15px">Join the community<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+<sc-if value="{{joinOpen}}" hint-placeholder-val="{{ true }}">
+<div role="menu" style="position: absolute; right: 0; top: 54px; width: 280px; padding: 8px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; gap: 6px; z-index: 5">
+<a role="menuitem" href="SiteSignIn.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #FBEAE8; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Student login</span><span style="font-size: 13px; color: #4A536B">Sign in or sign up</span></a>
+<a role="menuitem" href="StaffLogin.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #F2F3F6; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Staff login</span><span style="font-size: 13px; color: #4A536B">International Relations team</span></a>
+</div>
+</sc-if>
+</div>
+</header>
+<main style="flex-grow: 1; display: flex; justify-content: center; gap: 28px; padding: 48px 56px 64px; align-items: flex-start">
+<section style="width: 440px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; padding: 36px; border-radius: 24px; background: #18203A; color: #FFFFFF">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px; color: #FFFFFF">Welcome to UCV</span>
+<span style="font-size: 16px; line-height: 25px; color: #C9D0E4">Create your account once. The International Relations Office checks every request, then you can sign in.</span>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 22px; color: #E4E9F4"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: rgba(242, 183, 5, 0.2); color: #F2B705; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F2B705" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Join activities and say you're going</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: rgba(242, 183, 5, 0.2); color: #F2B705; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F2B705" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Ask the coordinator anything</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: rgba(242, 183, 5, 0.2); color: #F2B705; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F2B705" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Post on the International Wall</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: rgba(242, 183, 5, 0.2); color: #F2B705; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F2B705" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Add your country to our map</span></li></ul>
+</section>
+<section style="flex-grow: 1; max-width: 640px; display: flex; flex-direction: column; gap: 16px; padding: 36px; border-radius: 24px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<sc-if value="{{isForm}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px"><div role="tablist" aria-label="Student login" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 14px; background: #F2F3F6"><a role="tab" href="SiteSignIn.dc.html" aria-selected="false" style="display: flex; align-items: center; justify-content: center; height: 46px; border-radius: 11px; text-decoration: none; font-weight: 700; font-size: 15px; color: #4A536B">Sign in</a><a role="tab" href="SiteSignUp.dc.html" aria-selected="true" style="display: flex; align-items: center; justify-content: center; height: 46px; border-radius: 11px; text-decoration: none; font-weight: 700; font-size: 15px; background: #FFFFFF; color: #18203A; box-shadow: 0 1px 4px rgba(24, 32, 58, 0.12)">Sign up</a></div><h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 40px; line-height: 44px; letter-spacing: -0.5px">Join the community</h1></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="name" style="font-size: 15px; font-weight: 700">Full name</label>
+<input id="name" type="text" placeholder="Your full name" value="{{v.name}}" onChange="{{on.name}}" aria-invalid="{{e.nameOn}}" style="height: 50px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A; border-color: {{e.nameBorder}}">
+<sc-if value="{{e.nameOn}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 14px; font-weight: 700; color: #B42318">{{e.name}}</span></sc-if></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="email" style="font-size: 15px; font-weight: 700">Email address</label>
+<input id="email" type="email" placeholder="you@example.com" value="{{v.email}}" onChange="{{on.email}}" aria-invalid="{{e.emailOn}}" style="height: 50px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A; border-color: {{e.emailBorder}}">
+<sc-if value="{{e.emailOn}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 14px; font-weight: 700; color: #B42318">{{e.email}}</span></sc-if></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px"><div style="display: flex; flex-direction: column; gap: 6px"><label for="pw" style="font-size: 15px; font-weight: 700">Create password</label>
+<input id="pw" type="password" placeholder="At least 8 characters" value="{{v.pw}}" onChange="{{on.pw}}" aria-invalid="{{e.pwOn}}" style="height: 50px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A; border-color: {{e.pwBorder}}">
+<sc-if value="{{e.pwOn}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 14px; font-weight: 700; color: #B42318">{{e.pw}}</span></sc-if></div><div style="display: flex; flex-direction: column; gap: 6px"><label for="pw2" style="font-size: 15px; font-weight: 700">Confirm password</label>
+<input id="pw2" type="password" placeholder="Type it again" value="{{v.pw2}}" onChange="{{on.pw2}}" aria-invalid="{{e.pw2On}}" style="height: 50px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A; border-color: {{e.pw2Border}}">
+<sc-if value="{{e.pw2On}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 14px; font-weight: 700; color: #B42318">{{e.pw2}}</span></sc-if></div></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px"><div style="display: flex; flex-direction: column; gap: 6px"><label for="mobile" style="font-size: 15px; font-weight: 700">Mobile number</label>
+<input id="mobile" type="tel" placeholder="+34 600 000 000" value="{{v.mobile}}" onChange="{{on.mobile}}" aria-invalid="{{e.mobileOn}}" style="height: 50px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A; border-color: {{e.mobileBorder}}">
+<sc-if value="{{e.mobileOn}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 14px; font-weight: 700; color: #B42318">{{e.mobile}}</span></sc-if></div><div style="position: relative; display: flex; flex-direction: column; gap: 6px"><label for="country" style="font-size: 15px; font-weight: 700">Country</label>
+<div style="position: relative"><input id="country" type="text" role="combobox" aria-expanded="{{cOpen}}" aria-autocomplete="list" placeholder="Search your country" value="{{cText}}" onChange="{{cType}}" onFocus="{{cShow}}" style="height: 50px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A; width: 100%; padding-left: 42px; border-color: {{e.countryBorder}}"><span style="position: absolute; left: 14px; top: 15px; color: #4A536B"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></span></div>
+<sc-if value="{{cOpen}}" hint-placeholder-val="{{ false }}"><div role="listbox" style="position: absolute; left: 0; right: 0; top: 82px; z-index: 5; max-height: 220px; overflow-y: auto; padding: 6px; border-radius: 12px; background: #FFFFFF; border: 1px solid #D9DDE6; box-shadow: 0 14px 36px rgba(24, 32, 58, 0.18)">
+<sc-for list="{{cList}}" as="c" hint-placeholder-count="5"><button type="button" role="option" onClick="{{c.pick}}" style="display: block; width: 100%; text-align: left; height: 40px; padding: 0 12px; border: none; border-radius: 8px; background: #FFFFFF; color: #18203A; font-family: inherit; font-size: 15px; cursor: pointer">{{c.name}}</button></sc-for>
+<sc-if value="{{cNone}}" hint-placeholder-val="{{ false }}"><span style="display: block; padding: 10px 12px; font-size: 14px; color: #4A536B">No country matches</span></sc-if>
+</div></sc-if>
+<sc-if value="{{e.countryOn}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 14px; font-weight: 700; color: #B42318">{{e.country}}</span></sc-if></div></div>
+<label style="display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 21px; cursor: pointer"><input type="checkbox" checked="{{consent}}" onChange="{{toggleConsent}}" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #B42318; flex-shrink: 0"><span>I agree that the International Relations Office keeps my details to run this community.</span></label>
+<sc-if value="{{e.consentOn}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 14px; font-weight: 700; color: #B42318">{{e.consent}}</span></sc-if>
+<button type="button" onClick="{{submit}}" aria-busy="{{loading}}" style="display: flex; align-items: center; justify-content: center; gap: 10px; height: 54px; border-radius: 12px; border: none; background: #B42318; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 17px; text-decoration: none; width: 100%"><sc-if value="{{loading}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="3"></circle><path d="M21 12a9 9 0 0 0-9-9" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></path></svg></sc-if>{{btnLabel}}</button>
+<span style="font-size: 15px; text-align: center; color: #4A536B">Already registered? <a href="SiteSignIn.dc.html" style="font-weight: 700">Sign in</a></span>
+</div>
+</sc-if>
+<sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 30px 10px; text-align: center">
+<span style="width: 88px; height: 88px; border-radius: 50%; background: #E8F5EE; display: flex; align-items: center; justify-content: center"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#17633D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 34px; line-height: 40px">Request submitted</h1>
+<p style="margin: 0; max-width: 460px; font-size: 18px; line-height: 28px; color: #2E3650">Your registration request has been submitted successfully and is pending administrator approval. You will receive an email notification once your account is approved.</p>
+<a href="SiteHome.dc.html" style="display: flex; align-items: center; justify-content: center; height: 50px; border-radius: 12px; border: 1.5px solid #18203A; background: #FFFFFF; color: #18203A; font-family: inherit; font-weight: 700; font-size: 16px; text-decoration: none; padding: 0 22px">Back to the website</a>
+</div>
+</sc-if>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const __j = { joinOpen: !!s.joinOpen, toggleJoin: () => this.setState({ joinOpen: !s.joinOpen }) };
+    const __r = (() => { const v = s.v || { name: '', email: '', pw: '', pw2: '', mobile: '' };
+    const err = s.err || {};
+    const set = (k) => (ev) => this.setState({ v: Object.assign({}, v, { [k]: ev.target.value }), err: Object.assign({}, err, { [k]: '' }) });
+    const on = { name: set('name'), email: set('email'), pw: set('pw'), pw2: set('pw2'), mobile: set('mobile') };
+    const e = {};
+    ['name', 'email', 'pw', 'pw2', 'mobile', 'country', 'consent'].forEach((k) => { e[k] = err[k] || ''; e[k + 'On'] = !!err[k]; e[k + 'Border'] = err[k] ? '#B42318' : '#C3C9D6'; });
+    const all = ["Argentina", "Bulgaria", "Cambodia", "France", "Germany", "Greece", "India", "Italy", "Kazakhstan", "Morocco", "Moldova", "Pakistan", "Poland", "Portugal", "Romania", "Spain", "Türkiye", "Ukraine"];
+    const q = (s.cText || '').toLowerCase();
+    const list = all.filter((c) => c.toLowerCase().indexOf(q) > -1);
+    const consent = s.consent === undefined ? false : s.consent;
+    const submit = () => {
+      const x = {};
+      if (!v.name.trim()) x.name = 'Please enter your full name.';
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email)) x.email = 'Please enter a valid email address.';
+      if (v.pw.length < 8) x.pw = 'Use at least 8 characters.';
+      if (v.pw2 !== v.pw || !v.pw2) x.pw2 = "Passwords don't match.";
+      if (!/^\+?[0-9 ]{8,}$/.test(v.mobile)) x.mobile = 'Include your country code, e.g. +34.';
+      if (!s.country) x.country = 'Choose your country from the list.';
+      if (!consent) x.consent = 'Please tick this box to continue.';
+      if (Object.keys(x).length) { this.setState({ err: x }); return; }
+      this.setState({ loading: true, err: {} });
+      setTimeout(() => this.setState({ loading: false, done: true }), 900);
+    };
+    return {
+      v: v, on: on, e: e, consent: consent, toggleConsent: () => this.setState({ consent: !consent, err: Object.assign({}, err, { consent: '' }) }),
+      cText: s.cText || '', cOpen: !!s.cOpen, cNone: list.length === 0,
+      cType: (ev) => this.setState({ cText: ev.target.value, cOpen: true, country: '' }),
+      cShow: () => this.setState({ cOpen: true }),
+      cList: list.slice(0, 8).map((c) => ({ name: c, pick: () => this.setState({ cText: c, country: c, cOpen: false, err: Object.assign({}, err, { country: '' }) }) })),
+      loading: !!s.loading, btnLabel: s.loading ? 'Sending your request' : 'Sign up',
+      submit: submit, isForm: !s.done, isDone: !!s.done
+    }; })();
+    return Object.assign({}, __r, __j);
+  }
+}
+</script>
+</body>
+</html>

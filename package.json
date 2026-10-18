@@ -1,0 +1,30 @@
+{
+  "name": "ucv-international-community",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"server,client\" -c \"blue,green\" \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client",
+    "build:map": "npm run build:map -w client",
+    "test": "npm run test -w server",
+    "lint": "eslint client server shared",
+    "format": "prettier --write \"**/*.{js,jsx,json,css,md}\"",
+    "seed:admin": "npm run seed:admin -w server",
+    "seed:content": "npm run seed:content -w server",
+    "seed:demo": "npm run seed:demo -w server",
+    "mail:test": "npm run mail:test -w server"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.21.0",
+    "concurrently": "9.1.2",
+    "eslint": "9.21.0",
+    "eslint-plugin-react": "7.37.4",
+    "eslint-plugin-react-hooks": "5.1.0",
+    "prettier": "3.5.3"
+  }
+}

@@ -1,0 +1,31 @@
+export const UCV_FACULTIES = [
+  'FACULTY OF LETTERS',
+  'FACULTY OF MATHEMATICS AND INFORMATICS',
+  'FACULTY OF CHEMISTRY',
+  'FACULTY OF PHYSICS',
+  'FACULTY OF SOCIAL SCIENCES',
+  'FACULTY OF THEOLOGY',
+  'FACULTY OF PHYSICAL EDUCATION AND SPORTS',
+  'FACULTY OF AGRICULTURE',
+  'FACULTY OF HORTICULTURE',
+  'FACULTY OF LAW AND ADMINISTRATIVE SCIENCES',
+  'FACULTY OF ECONOMICS AND BUSINESS ADMINISTRATION',
+  'FACULTY OF ELECTRICAL ENGINEERING',
+  'FACULTY OF MECHANICAL ENGINEERING',
+  'FACULTY OF ENGINEERING IN ELECTRO-MECHANICS, ENVIRONMENT AND INDUSTRIAL INFORMATICS',
+  'FACULTY OF AUTOMATICS, COMPUTER SCIENCE AND ELECTRONICS',
+  'FACULTY OF TECHNOLOGICAL SYSTEM MANAGEMENT AND ENGINEERING',
+  'DROBETA TURNU-SEVERIN UNIVERSITY CENTRE'
+];
+
+export const STUDENT_PROGRAMME_OPTIONS = [
+  { value: 'erasmus_exchange', label: 'Erasmus+ exchange' },
+  { value: 'erasmus_traineeship', label: 'Erasmus+ traineeship' },
+  { value: 'full_degree', label: 'Full degree' },
+  { value: 'other', label: 'Other international programme' }
+];
+
+export function getProgrammeLabel(prog) {
+  const found = STUDENT_PROGRAMME_OPTIONS.find((p) => p.value === prog);
+  return found ? found.label : prog || 'Erasmus+ exchange';
+}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Student dashboard</title>
+<!-- design-tool preview file: reference only, see docs/SCREENS.md -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#F2F3F6;font-family:'Atkinson Hyperlegible',Verdana,sans-serif;color:#18203A}
+a{color:#B42318}a:hover{color:#8F1B12}
+:focus-visible{outline:3px solid #E0A200;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1480px; background: #F2F3F6; display: flex; flex-direction: column; overflow: hidden; font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; color: #18203A">
+<svg width="1440" height="28" viewBox="0 0 1440 28" aria-hidden="true" style="display: block; flex-shrink: 0"><defs><pattern id="stitch" x="0" y="0" width="40" height="28" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="40" height="28" fill="#FFFFFF"></rect><rect x="8" y="4" width="4" height="4" fill="#B42318"></rect><rect x="4" y="8" width="4" height="4" fill="#B42318"></rect><rect x="12" y="8" width="4" height="4" fill="#B42318"></rect><rect x="0" y="12" width="4" height="4" fill="#B42318"></rect><rect x="8" y="12" width="4" height="4" fill="#E0A200"></rect><rect x="16" y="12" width="4" height="4" fill="#B42318"></rect><rect x="4" y="16" width="4" height="4" fill="#B42318"></rect><rect x="12" y="16" width="4" height="4" fill="#B42318"></rect><rect x="8" y="20" width="4" height="4" fill="#B42318"></rect><rect x="24" y="8" width="4" height="4" fill="#18203A"></rect><rect x="32" y="8" width="4" height="4" fill="#18203A"></rect><rect x="28" y="12" width="4" height="4" fill="#18203A"></rect><rect x="24" y="16" width="4" height="4" fill="#18203A"></rect><rect x="32" y="16" width="4" height="4" fill="#18203A"></rect></pattern></defs><rect x="0" y="0" width="1440" height="28" fill="url(#stitch)"></rect></svg>
+<header style="display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 84px; padding: 0 40px; background: #FFFFFF; border-bottom: 1px solid #D9DDE6; flex-shrink: 0">
+<a href="SiteHome.dc.html" aria-label="UCV International Student Community, website home" style="display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0"><img src="../assets/community-logo.png" alt="UCV International Student Community" style="width: 96px; height: 56px; display: block; object-fit: contain"><span aria-hidden="true" style="width: 1px; height: 40px; background: rgba(24, 32, 58, 0.25)"></span><img src="../assets/ucv-crest.png" alt="University of Craiova" style="width: 38px; height: 52px; display: block; object-fit: contain"></a>
+<div style="display: flex; align-items: center; gap: 16px">
+<a href="SiteHome.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 700; color: #2E3650; text-decoration: none">Back to the website</a>
+<div style="position: relative">
+<button type="button" aria-label="Notifications, 2 new" aria-expanded="{{bellOpen}}" onClick="{{toggleBell}}" style="position: relative; width: 44px; height: 44px; border-radius: 12px; border: 1.5px solid #D9DDE6; background: #FFFFFF; color: #18203A; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg><span style="position: absolute; top: 9px; right: 10px; width: 9px; height: 9px; border-radius: 50%; background: #B42318"></span></button>
+<sc-if value="{{bellOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-label="Notifications" style="position: absolute; right: 0; top: 54px; z-index: 6; width: 360px; padding: 10px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 18px 44px rgba(24, 32, 58, 0.25); display: flex; flex-direction: column; gap: 6px">
+<span style="padding: 6px 8px; font-size: 14px; font-weight: 700; color: #4A536B">Notifications</span>
+<a href="StudentEvents.dc.html" style="display: flex; flex-direction: column; gap: 3px; padding: 12px; border-radius: 12px; background: #E8F5EE; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 15px">Reminder: Welcome evening is on Wednesday</span><span style="font-size: 13px; color: #4A536B">21 October, 17:00. See the itinerary</span></a>
+<a href="StudentAsk.dc.html" style="display: flex; flex-direction: column; gap: 3px; padding: 12px; border-radius: 12px; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 15px">Your question was answered</span><span style="font-size: 13px; color: #4A536B">Can I bring a friend on 21 October? Today</span></a>
+</div>
+</sc-if>
+</div>
+<a href="StudentProfile.dc.html" style="display: flex; align-items: center; gap: 10px; padding-left: 16px; border-left: 1px solid #D9DDE6; text-decoration: none; color: #18203A">
+<span style="width: 40px; height: 40px; border-radius: 50%; background: #F2B705; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">LF</span>
+<span style="display: flex; flex-direction: column"><span style="font-weight: 700; font-size: 15px">Lucía Fernández</span><span style="font-size: 13px; color: #4A536B">Student</span></span>
+</a>
+<a href="SiteHome.dc.html" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 10px; border: 1.5px solid #B42318; color: #B42318; font-weight: 700; font-size: 15px; text-decoration: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4"></path><path d="M10 17l-5-5 5-5"></path><path d="M5 12h11"></path></svg>Log out</a>
+</div>
+</header>
+<div style="flex-grow: 1; display: flex; min-height: 0">
+<nav aria-label="Student area" style="width: 248px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4px; padding: 24px 16px; background: #FFFFFF; border-right: 1px solid #D9DDE6">
+<a href="StudentDashboard.dc.html" aria-current="page" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 10px; text-decoration: none; font-size: 15px; background: #18203A; color: #FFFFFF; font-weight: 700"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>Overview</a>
+<a href="StudentEvents.dc.html" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 10px; text-decoration: none; font-size: 15px; color: #2E3650"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path><path d="M8 3v4"></path><path d="M16 3v4"></path></svg>My events</a>
+<a href="StudentAsk.dc.html" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 10px; text-decoration: none; font-size: 15px; color: #2E3650"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 4h16v12H9l-5 4z"></path><path d="M9.5 8.5a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5"></path><path d="M12 14h.01"></path></svg>Ask the coordinator</a>
+<a href="StudentWall.dc.html" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 10px; text-decoration: none; font-size: 15px; color: #2E3650"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 4h16v12H9l-5 4z"></path><path d="M8 9h8"></path><path d="M8 12h5"></path></svg>International Wall</a>
+<a href="StudentWord.dc.html" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 10px; text-decoration: none; font-size: 15px; color: #2E3650"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 19V6a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2z"></path><path d="M8 8h7"></path><path d="M8 12h5"></path></svg>Learn a word</a>
+<a href="StudentClubs.dc.html" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 10px; text-decoration: none; font-size: 15px; color: #2E3650"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 14.6c2.6-.3 4.9 1.2 5.5 4.4"></path></svg>Shape our clubs</a>
+<a href="StudentAmbassadors.dc.html" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 10px; text-decoration: none; font-size: 15px; color: #2E3650"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg>Ambassadors</a>
+<a href="StudentProfile.dc.html" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 10px; text-decoration: none; font-size: 15px; color: #2E3650"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1-4.2 4.2-6.5 8-6.5s7 2.3 8 6.5"></path></svg>My profile</a>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 16px; border-top: 1px solid #E6E9F0">
+<a href="SiteHome.dc.html" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border-radius: 10px; border: 1.5px solid #B42318; text-decoration: none; font-size: 15px; font-weight: 700; color: #B42318"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4"></path><path d="M10 17l-5-5 5-5"></path><path d="M5 12h11"></path></svg>Log out</a>
+</div>
+</nav>
+<main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 22px; padding: 32px 40px 40px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 40px; line-height: 46px; letter-spacing: -0.5px">Bună, Lucía</h1>
+<p style="margin: 0; font-size: 17px; color: #4A536B">That's "hi" in Romanian. Here's what's happening in the community.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start">
+<section id="my-events" style="background: #FFFFFF; border: 1px solid #D9DDE6; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><span style="font-size: 14px; font-weight: 700; color: #B42318">Next activity</span><a href="StudentEvents.dc.html" style="font-size: 15px; font-weight: 700">All my events</a></div>
+<div style="display: flex; gap: 18px; align-items: center">
+<div style="width: 76px; height: 84px; flex-shrink: 0; border-radius: 14px; background: #B42318; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 14px; font-weight: 700">Oct</span><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 34px; line-height: 36px">21</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 28px; line-height: 34px">Welcome evening</h2><span style="display: flex; align-items: center; gap: 8px; font-size: 15px; color: #4A536B"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Wednesday 21 October, 17:00</span><span style="display: flex; align-items: center; gap: 8px; font-size: 15px; color: #4A536B"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>[Venue]</span></div>
+</div>
+<span style="font-size: 15px; font-weight: 700">Are you coming?</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<button type="button" aria-pressed="{{going}}" onClick="{{setGoing}}" style="height: 46px; border-radius: 10px; font-family: inherit; font-weight: 700; font-size: 15px; border: 2px solid {{goBorder}}; background: {{goBg}}; color: {{goColor}}">I'm going</button>
+<button type="button" aria-pressed="{{notGoing}}" onClick="{{setNot}}" style="height: 46px; border-radius: 10px; font-family: inherit; font-weight: 700; font-size: 15px; border: 2px solid {{noBorder}}; background: {{noBg}}; color: {{noColor}}">Can't make it</button>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap"><button type="button" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 10px; border: 1.5px solid #18203A; background: #FFFFFF; color: #18203A; font-family: inherit; font-weight: 700; font-size: 15px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path><path d="M8 3v4"></path><path d="M16 3v4"></path></svg>Add to my calendar</button></div>
+</section>
+<section id="ask-the-coordinator" style="background: #FFFFFF; border: 1px solid #D9DDE6; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 12px; background: #FDF3D3; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 4h16v12H9l-5 4z"></path><path d="M9.5 8.5a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5"></path><path d="M12 14h.01"></path></svg></span><div style="display: flex; flex-direction: column"><h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px">Ask the coordinator</h2><span style="font-size: 14px; color: #4A536B">Goes straight to the International Relations team</span></div></div>
+<sc-if value="{{askOpen}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<select aria-label="Topic" style="height: 46px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A"><option>Events and activities</option><option>Life in Craiova</option><option>Something else</option></select>
+<textarea aria-label="Your question" rows="2" placeholder="Write your question" style="min-height: 76px; padding: 12px 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; font-family: inherit; font-size: 15px; line-height: 22px; color: #18203A; resize: none"></textarea>
+<button type="button" onClick="{{sendAsk}}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; font-family: inherit; font-weight: 700; font-size: 15px; text-decoration: none; border: none; background: #B42318; color: #FFFFFF; align-self: flex-start">Send my question</button>
+</div>
+</sc-if>
+<sc-if value="{{askSent}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 12px; background: #E8F5EE; color: #17633D; font-weight: 700; font-size: 15px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Sent. The answer will appear under My questions.</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 6px; border-top: 1px solid #E6E9F0">
+<a href="StudentAsk.dc.html" style="font-size: 14px; font-weight: 700; padding-top: 8px">See my questions and answers</a>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 15px"><span>Where can I buy a bus pass?</span><span style="padding: 4px 10px; border-radius: 999px; background: #E8F5EE; color: #17633D; font-size: 13px; font-weight: 700">Answered</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 15px"><span>Is the welcome evening in English?</span><span style="padding: 4px 10px; border-radius: 999px; background: #FDF3D3; color: #5C4A00; font-size: 13px; font-weight: 700">Waiting</span></div>
+</div>
+</section>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start">
+<section id="international-wall" style="background: #FFFFFF; border: 1px solid #D9DDE6; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 4h16v12H9l-5 4z"></path><path d="M8 9h8"></path><path d="M8 12h5"></path></svg><h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 20px; line-height: 26px">International Wall</h2></div>
+<span style="font-size: 14px; font-weight: 700; color: #B42318">October question</span>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 19px; line-height: 25px">What do you hope to discover in Romania?</span>
+<sc-if value="{{wallOpen}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<textarea aria-label="Your answer" rows="3" placeholder="Write a sentence or two" style="min-height: 88px; padding: 12px 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; font-family: inherit; font-size: 15px; line-height: 22px; color: #18203A; resize: none"></textarea>
+<button type="button" onClick="{{postWall}}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; font-family: inherit; font-weight: 700; font-size: 15px; text-decoration: none; border: none; background: #B42318; color: #FFFFFF; align-self: flex-start">Post my answer</button>
+</div>
+</sc-if>
+<sc-if value="{{wallSent}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 14px 16px; border-radius: 12px; background: #FDF3D3; color: #5C4A00; font-weight: 700; font-size: 15px">Posted! It's on the wall now.</div>
+</sc-if>
+</section>
+<section id="learn-a-word" style="background: #FFFFFF; border: 1px solid #D9DDE6; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 19V6a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2z"></path><path d="M8 8h7"></path><path d="M8 12h5"></path></svg><h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 20px; line-height: 26px">Teach us a word</h2></div>
+<span style="font-size: 15px; line-height: 22px; color: #4A536B">Share a word from your language. This month's Romanian word is <strong style="color: #18203A">dor</strong>.</span>
+<sc-if value="{{wordOpen}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px"><input aria-label="Your word" type="text" placeholder="Word" style="height: 46px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A"><input aria-label="Language" type="text" placeholder="Language" style="height: 46px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A"></div>
+<input aria-label="What it means" type="text" placeholder="What it means" style="height: 46px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A">
+<button type="button" onClick="{{sendWord}}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; font-family: inherit; font-weight: 700; font-size: 15px; text-decoration: none; border: none; background: #B42318; color: #FFFFFF; align-self: flex-start">Send my word</button>
+</div>
+</sc-if>
+<sc-if value="{{wordSent}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 14px 16px; border-radius: 12px; background: #FDF3D3; color: #5C4A00; font-weight: 700; font-size: 15px">Shared! Everyone can see it now.</div>
+</sc-if>
+</section>
+<section id="shape-our-clubs" style="background: #FFFFFF; border: 1px solid #D9DDE6; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 14.6c2.6-.3 4.9 1.2 5.5 4.4"></path></svg><h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 20px; line-height: 26px">Shape our clubs</h2></div>
+<span style="font-size: 14px; font-weight: 700; color: #4A536B">Your upvotes</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px; background: #1E7B4C; color: #FFFFFF; font-size: 13px; font-weight: 700"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>Culture and conversation</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px; background: #1E7B4C; color: #FFFFFF; font-size: 13px; font-weight: 700"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>City and travel</span>
+</div>
+<sc-if value="{{clubOpen}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<input aria-label="Your club idea" type="text" placeholder="Propose a club, e.g. a board games night" style="height: 46px; padding: 0 14px; border: 1.5px solid #C3C9D6; border-radius: 10px; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #18203A">
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer"><input type="checkbox" style="width: 20px; height: 20px; margin: 0; accent-color: #B42318">I'd like to help run it</label>
+<button type="button" onClick="{{sendClub}}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; font-family: inherit; font-weight: 700; font-size: 15px; text-decoration: none; border: none; background: #B42318; color: #FFFFFF; align-self: flex-start">Propose</button>
+</div>
+</sc-if>
+<sc-if value="{{clubSent}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 14px 16px; border-radius: 12px; background: #E8F5EE; color: #17633D; font-weight: 700; font-size: 15px">Thanks! The International Relations team will look at your idea.</div>
+</sc-if>
+</section>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start">
+<section id="ambassadors" style="background: #FFFFFF; border: 1px solid #D9DDE6; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 12px; background: #FDF3D3; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></span><h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px">Become an ambassador</h2></div>
+<span style="font-size: 15px; line-height: 22px; color: #2E3650">Welcome new students, help run activities and get a volunteering certificate.</span>
+<ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<li style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 12px; background: {{ambStep1Bg}}; font-size: 14px"><strong>1. Apply</strong><span style="color: #4A536B">{{ambStep1}}</span></li>
+<li style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 12px; background: #F2F3F6; font-size: 14px"><strong>2. Short chat</strong><span style="color: #4A536B">With the IR team</span></li>
+<li style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 12px; background: #F2F3F6; font-size: 14px"><strong>3. Welcome</strong><span style="color: #4A536B">Join the team</span></li>
+</ol>
+<sc-if value="{{ambOpen}}" hint-placeholder-val="{{ true }}"><a href="StudentAmbassadors.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; font-family: inherit; font-weight: 700; font-size: 15px; text-decoration: none; border: none; background: #B42318; color: #FFFFFF; align-self: flex-start">Apply now</a></sc-if>
+</section>
+<section id="my-profile" style="background: #FFFFFF; border: 1px solid #D9DDE6; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px">My profile</h2><a href="StudentProfile.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; font-family: inherit; font-weight: 700; font-size: 15px; text-decoration: none; border: 1.5px solid #18203A; background: #FFFFFF; color: #18203A">Edit</a></div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; font-size: 15px">
+<div><dt style="font-size: 13px; color: #4A536B">Country</dt><dd style="margin: 2px 0 0; font-weight: 700">Spain</dd></div>
+<div><dt style="font-size: 13px; color: #4A536B">Email</dt><dd style="margin: 2px 0 0; font-weight: 700">lucia.fernandez@example.com</dd></div>
+<div><dt style="font-size: 13px; color: #4A536B">Mobile number</dt><dd style="margin: 2px 0 0; font-weight: 700">+34 600 112 233</dd></div>
+</dl>
+</section>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1480}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const going = s.going === undefined ? true : s.going;
+    const on = (x) => ({ border: x ? '#18203A' : '#C3C9D6', bg: x ? '#18203A' : '#FFFFFF', color: x ? '#FFFFFF' : '#18203A' });
+    const g = on(going), n = on(!going);
+    return {
+      bellOpen: !!s.bell, toggleBell: () => this.setState({ bell: !s.bell }),
+      going: going, notGoing: !going,
+      goBorder: g.border, goBg: g.bg, goColor: g.color,
+      noBorder: n.border, noBg: n.bg, noColor: n.color,
+      setGoing: () => this.setState({ going: true }),
+      setNot: () => this.setState({ going: false }),
+      askOpen: !s.ask, askSent: !!s.ask, sendAsk: () => this.setState({ ask: true }),
+      wallOpen: !s.wall, wallSent: !!s.wall, postWall: () => this.setState({ wall: true }),
+      wordOpen: !s.word, wordSent: !!s.word, sendWord: () => this.setState({ word: true }),
+      clubOpen: !s.club, clubSent: !!s.club, sendClub: () => this.setState({ club: true }),
+      ambOpen: !s.amb,
+      ambStep1: s.amb ? 'Sent, thank you' : 'Takes 2 minutes',
+      ambStep1Bg: s.amb ? '#E8F5EE' : '#F2F3F6',
+      applyAmb: () => this.setState({ amb: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

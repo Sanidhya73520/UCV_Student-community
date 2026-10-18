@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment variables
+.env
+.env*.local
+.env.example
+
+# Build output
+dist/
+build/
+client/dist/
+
+# Test & coverage
+coverage/
+.nyc_output/
+server/test/
+
+# Backups & uploads
+backups/
+temp/
+*.tmp
+.mongo-data/
+server/.mongo-data/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+docs/

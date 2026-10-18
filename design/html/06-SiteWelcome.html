@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Website 4.1: Welcome evening</title>
+<!-- design-tool preview file: reference only, see docs/SCREENS.md -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#F2F3F6;font-family:'Atkinson Hyperlegible',Verdana,sans-serif;color:#18203A}
+a{color:#B42318}a:hover{color:#8F1B12}
+:focus-visible{outline:3px solid #E0A200;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1620px; background: #F2F3F6; display: flex; flex-direction: column; overflow: hidden; font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; color: #18203A">
+<svg width="1440" height="28" viewBox="0 0 1440 28" aria-hidden="true" style="display: block; flex-shrink: 0"><defs><pattern id="stitch" x="0" y="0" width="40" height="28" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="40" height="28" fill="#FFFFFF"></rect><rect x="8" y="4" width="4" height="4" fill="#B42318"></rect><rect x="4" y="8" width="4" height="4" fill="#B42318"></rect><rect x="12" y="8" width="4" height="4" fill="#B42318"></rect><rect x="0" y="12" width="4" height="4" fill="#B42318"></rect><rect x="8" y="12" width="4" height="4" fill="#E0A200"></rect><rect x="16" y="12" width="4" height="4" fill="#B42318"></rect><rect x="4" y="16" width="4" height="4" fill="#B42318"></rect><rect x="12" y="16" width="4" height="4" fill="#B42318"></rect><rect x="8" y="20" width="4" height="4" fill="#B42318"></rect><rect x="24" y="8" width="4" height="4" fill="#18203A"></rect><rect x="32" y="8" width="4" height="4" fill="#18203A"></rect><rect x="28" y="12" width="4" height="4" fill="#18203A"></rect><rect x="24" y="16" width="4" height="4" fill="#18203A"></rect><rect x="32" y="16" width="4" height="4" fill="#18203A"></rect></pattern></defs><rect x="0" y="0" width="1440" height="28" fill="url(#stitch)"></rect></svg>
+<header style="position: relative; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 84px; padding: 0 56px; background: #FFFFFF; border-bottom: 1px solid #D9DDE6; flex-shrink: 0">
+<a href="SiteHome.dc.html" aria-label="UCV International Student Community, home" style="display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0"><img src="../assets/community-logo.png" alt="UCV International Student Community" style="width: 96px; height: 56px; display: block; object-fit: contain"><span aria-hidden="true" style="width: 1px; height: 40px; background: rgba(24, 32, 58, 0.25)"></span><img src="../assets/ucv-crest.png" alt="University of Craiova" style="width: 38px; height: 52px; display: block; object-fit: contain"></a>
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 2px">
+<a href="SiteHome.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Home</a>
+<a href="SiteMap.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Where we're from</a>
+<a href="SiteClub.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Clubs</a>
+<a href="SiteCalendar-uat1.dc.html" aria-current="page" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; background: #E4E9F4; color: #18203A; font-weight: 700">Calendar</a>
+<a href="SiteWall.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Wall</a>
+<a href="SiteWord.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Learn a word</a>
+<a href="SiteAmbassadors.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Ambassadors</a>
+</nav>
+<div style="position: relative; flex-shrink: 0">
+<button type="button" aria-haspopup="menu" aria-expanded="{{joinOpen}}" onClick="{{toggleJoin}}" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: #B42318; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 15px">Join the community<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+<sc-if value="{{joinOpen}}" hint-placeholder-val="{{ true }}">
+<div role="menu" style="position: absolute; right: 0; top: 54px; width: 280px; padding: 8px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; gap: 6px; z-index: 5">
+<a role="menuitem" href="SiteSignIn.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #FBEAE8; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Student login</span><span style="font-size: 13px; color: #4A536B">Sign in or sign up</span></a>
+<a role="menuitem" href="StaffLogin.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #F2F3F6; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Staff login</span><span style="font-size: 13px; color: #4A536B">International Relations team</span></a>
+</div>
+</sc-if>
+</div>
+</header>
+<main style="flex-grow: 1; display: flex; flex-direction: column; gap: 28px; padding: 28px 56px 56px">
+<a href="SiteCalendar-uat1.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 700; font-size: 15px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M15 5l-7 7 7 7"></path></svg>Back to the calendar</a>
+<section style="display: flex; gap: 28px; align-items: stretch">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 18px; padding: 40px; border-radius: 28px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; height: 32px; padding: 0 14px; border-radius: 999px; background: #FBEAE8; color: #8F1B12; font-size: 14px; font-weight: 700">October event</span>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 64px; line-height: 68px; letter-spacing: -1.5px">Welcome evening</h1>
+<p style="margin: 0; max-width: 640px; font-size: 20px; line-height: 30px; color: #2E3650">Meet the international community, discover the clubs and start your year in Craiova with new friends.</p>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<div style="display: flex; gap: 12px; align-items: center; padding: 16px 18px; border-radius: 14px; background: #F2F3F6">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path><path d="M8 3v4"></path><path d="M16 3v4"></path></svg></span>
+<div style="display: flex; flex-direction: column"><span style="font-size: 13px; color: #4A536B">Date</span><span style="font-weight: 700; font-size: 16px">Wednesday 21 October</span></div>
+</div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 16px 18px; border-radius: 14px; background: #F2F3F6">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+<div style="display: flex; flex-direction: column"><span style="font-size: 13px; color: #4A536B">Time</span><span style="font-weight: 700; font-size: 16px">17:00 to 19:00</span></div>
+</div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 16px 18px; border-radius: 14px; background: #F2F3F6">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></span>
+<div style="display: flex; flex-direction: column"><span style="font-size: 13px; color: #4A536B">Place</span><span style="font-weight: 700; font-size: 16px">[Venue]</span></div>
+</div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 16px 18px; border-radius: 14px; background: #F2F3F6">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M17 6.5A7 7 0 1 0 17 17.5"></path><path d="M4 10h9"></path><path d="M4 14h9"></path></svg></span>
+<div style="display: flex; flex-direction: column"><span style="font-size: 13px; color: #4A536B">Cost</span><span style="font-weight: 700; font-size: 16px">Free</span></div>
+</div>
+</div>
+<span style="font-size: 16px; line-height: 24px; color: #4A536B">Coming? <a href="SiteSignIn.dc.html" style="font-weight: 700; color: #B42318">Log in as a student</a> to let us know and add it to your calendar.</span>
+</div>
+<aside style="width: 400px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; padding: 36px; border-radius: 28px; background: #18203A; color: #FFFFFF">
+<span style="width: 56px; height: 56px; border-radius: 16px; background: #F2B705; color: #18203A; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><rect x="3" y="8" width="18" height="13" rx="2"></rect><path d="M12 8v13"></path><path d="M3 12h18"></path><path d="M12 8c-2-4-6-4-6-1s4 1 6 1c2 0 6 2 6-1s-4-3-6 1z"></path></svg></span>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #FFFFFF">The most important thing isn't in the welcome bag. It's the people you're about to meet.</p>
+<span style="font-size: 15px; color: #C9D0E4">From your welcome card</span>
+</aside>
+</section>
+<section style="display: flex; flex-direction: column; gap: 18px; padding: 32px 36px; border-radius: 24px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 32px; line-height: 38px">Itinerary</h2>
+<span style="font-size: 15px; color: #4A536B">Times to be confirmed</span>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 22px">
+<li style="display: grid; grid-template-columns: 90px 18px minmax(0, 1fr); gap: 18px; align-items: start">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #B42318">17:00</span>
+<span style="position: relative; height: 100%"><span style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #F2B705; border: 3px solid #FFFFFF; box-shadow: 0 0 0 1.5px #C49A54"></span><span style="position: absolute; left: 7px; top: 22px; bottom: -22px; width: 2px; background: #E6D3A8"></span></span>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 6px"><span style="font-weight: 700; font-size: 18px; line-height: 26px">Arrival, welcome bags and name tags</span><span style="font-size: 15px; line-height: 22px; color: #4A536B">Say hello and collect your welcome bag</span></div>
+</li>
+<li style="display: grid; grid-template-columns: 90px 18px minmax(0, 1fr); gap: 18px; align-items: start">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #B42318">17:15</span>
+<span style="position: relative; height: 100%"><span style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #F2B705; border: 3px solid #FFFFFF; box-shadow: 0 0 0 1.5px #C49A54"></span><span style="position: absolute; left: 7px; top: 22px; bottom: -22px; width: 2px; background: #E6D3A8"></span></span>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 6px"><span style="font-weight: 700; font-size: 18px; line-height: 26px">Welcome from the International Relations Office</span><span style="font-size: 15px; line-height: 22px; color: #4A536B">A short hello from the team</span></div>
+</li>
+<li style="display: grid; grid-template-columns: 90px 18px minmax(0, 1fr); gap: 18px; align-items: start">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #B42318">17:30</span>
+<span style="position: relative; height: 100%"><span style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #F2B705; border: 3px solid #FFFFFF; box-shadow: 0 0 0 1.5px #C49A54"></span><span style="position: absolute; left: 7px; top: 22px; bottom: -22px; width: 2px; background: #E6D3A8"></span></span>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 6px"><span style="font-weight: 700; font-size: 18px; line-height: 26px">Find your people</span><span style="font-size: 15px; line-height: 22px; color: #4A536B">Icebreaker bingo to meet students from other countries</span></div>
+</li>
+<li style="display: grid; grid-template-columns: 90px 18px minmax(0, 1fr); gap: 18px; align-items: start">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #B42318">18:00</span>
+<span style="position: relative; height: 100%"><span style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #F2B705; border: 3px solid #FFFFFF; box-shadow: 0 0 0 1.5px #C49A54"></span><span style="position: absolute; left: 7px; top: 22px; bottom: -22px; width: 2px; background: #E6D3A8"></span></span>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 6px"><span style="font-weight: 700; font-size: 18px; line-height: 26px">Where are we from?</span><span style="font-size: 15px; line-height: 22px; color: #4A536B">Add your country to the community map</span></div>
+</li>
+<li style="display: grid; grid-template-columns: 90px 18px minmax(0, 1fr); gap: 18px; align-items: start">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #B42318">18:20</span>
+<span style="position: relative; height: 100%"><span style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #F2B705; border: 3px solid #FFFFFF; box-shadow: 0 0 0 1.5px #C49A54"></span><span style="position: absolute; left: 7px; top: 22px; bottom: -22px; width: 2px; background: #E6D3A8"></span></span>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 6px"><span style="font-weight: 700; font-size: 18px; line-height: 26px">Teach me something</span><span style="font-size: 15px; line-height: 22px; color: #4A536B">Learn a word, a gesture or a game from someone new</span></div>
+</li>
+<li style="display: grid; grid-template-columns: 90px 18px minmax(0, 1fr); gap: 18px; align-items: start">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #B42318">18:40</span>
+<span style="position: relative; height: 100%"><span style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #F2B705; border: 3px solid #FFFFFF; box-shadow: 0 0 0 1.5px #C49A54"></span><span style="position: absolute; left: 7px; top: 22px; bottom: -22px; width: 2px; background: #E6D3A8"></span></span>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 6px"><span style="font-weight: 700; font-size: 18px; line-height: 26px">Shape our clubs</span><span style="font-size: 15px; line-height: 22px; color: #4A536B">Vote for the clubs you'd join and share your ideas</span></div>
+</li>
+<li style="display: grid; grid-template-columns: 90px 18px minmax(0, 1fr); gap: 18px; align-items: start">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #B42318">19:00</span>
+<span style="position: relative; height: 100%"><span style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #F2B705; border: 3px solid #FFFFFF; box-shadow: 0 0 0 1.5px #C49A54"></span></span>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 6px"><span style="font-weight: 700; font-size: 18px; line-height: 26px">Group photo and goodbye</span><span style="font-size: 15px; line-height: 22px; color: #4A536B">One photo of everyone, then see you at the next event</span></div>
+</li>
+</ol>
+</section>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px">
+<section style="display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: 22px; background: #FDF3D3">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 24px; line-height: 30px">What to bring</h2>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 17px; line-height: 25px; color: #2E3650">
+<li>Your phone, to join the community on the spot</li>
+<li>A friend who is new in Craiova</li>
+<li>Optional: something small from home to show others</li>
+</ul>
+</section>
+<section style="display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: 22px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 24px; line-height: 30px">Good to know</h2>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 17px; line-height: 25px; color: #2E3650">
+<li>Open to all international students; Romanian students are welcome too</li>
+<li>The evening is in English</li>
+<li>Questions? Write to [office email]</li>
+</ul>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1620}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const __b = this._rv();
+    const __s = this.state || {};
+    return Object.assign({}, __b, { joinOpen: !!__s.joinOpen, toggleJoin: () => this.setState({ joinOpen: !__s.joinOpen }) });
+  }
+  _rv() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

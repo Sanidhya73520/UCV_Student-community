@@ -1,0 +1,39 @@
+:root {
+  --navy: #18203A;
+  --red: #B42318;
+  --red-hover: #8F1B12;
+  --marigold: #F2B705;
+  --focus: #E0A200;
+  --paper: #F2F3F6;
+  --blue-tint: #E4E9F4;
+  --green: #1E7B4C;
+  --forest: #1E7B4C;
+  --brand-red: #B42318;
+  --text: #18203A;
+  --text-muted: #4A536B;
+  --border: #D9DDE6;
+  --field-border: #C3C9D6;
+  --pink-tint: #FBEAE8;
+  --white: #FFFFFF;
+  --coral: #FF6B57;
+
+  /* Typography */
+  --font-heading: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Atkinson Hyperlegible', sans-serif;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(24, 32, 58, 0.05);
+  --shadow-md: 0 4px 12px rgba(24, 32, 58, 0.08);
+  --shadow-lg: 0 12px 24px rgba(24, 32, 58, 0.12);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}

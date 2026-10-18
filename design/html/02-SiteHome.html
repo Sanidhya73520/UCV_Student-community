@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Website: Home</title>
+<!-- design-tool preview file: reference only, see docs/SCREENS.md -->
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#F2F3F6;font-family:'Atkinson Hyperlegible',Verdana,sans-serif;color:#18203A}
+a{color:#B42318}a:hover{color:#8F1B12}
+:focus-visible{outline:3px solid #E0A200;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 2100px; background: #F2F3F6; display: flex; flex-direction: column; overflow: hidden; font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; color: #18203A">
+<svg width="1440" height="28" viewBox="0 0 1440 28" aria-hidden="true" style="display: block; flex-shrink: 0"><defs><pattern id="stitch" x="0" y="0" width="40" height="28" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="40" height="28" fill="#FFFFFF"></rect><rect x="8" y="4" width="4" height="4" fill="#B42318"></rect><rect x="4" y="8" width="4" height="4" fill="#B42318"></rect><rect x="12" y="8" width="4" height="4" fill="#B42318"></rect><rect x="0" y="12" width="4" height="4" fill="#B42318"></rect><rect x="8" y="12" width="4" height="4" fill="#E0A200"></rect><rect x="16" y="12" width="4" height="4" fill="#B42318"></rect><rect x="4" y="16" width="4" height="4" fill="#B42318"></rect><rect x="12" y="16" width="4" height="4" fill="#B42318"></rect><rect x="8" y="20" width="4" height="4" fill="#B42318"></rect><rect x="24" y="8" width="4" height="4" fill="#18203A"></rect><rect x="32" y="8" width="4" height="4" fill="#18203A"></rect><rect x="28" y="12" width="4" height="4" fill="#18203A"></rect><rect x="24" y="16" width="4" height="4" fill="#18203A"></rect><rect x="32" y="16" width="4" height="4" fill="#18203A"></rect></pattern></defs><rect x="0" y="0" width="1440" height="28" fill="url(#stitch)"></rect></svg>
+<section aria-label="Welcome" data-fullscreen="100vh" style="position: relative; height: 900px; flex-shrink: 0; overflow: hidden; background: #18203A">
+<header style="position: absolute; left: 0; right: 0; top: 0; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 96px; padding: 0 56px">
+<a href="SiteHome.dc.html" aria-label="UCV International Student Community, home" style="display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0"><img src="../assets/community-logo.png" alt="UCV International Student Community" style="width: 96px; height: 56px; display: block; object-fit: contain"><span aria-hidden="true" style="width: 1px; height: 40px; background: rgba(24, 32, 58, 0.25)"></span><img src="../assets/ucv-crest.png" alt="University of Craiova" style="width: 38px; height: 52px; display: block; object-fit: contain"></a>
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 2px">
+<a href="SiteHome.dc.html" aria-current="page" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; background: #E4E9F4; color: #18203A; font-weight: 700">Home</a>
+<a href="SiteMap.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Where we're from</a>
+<a href="SiteClub.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Clubs</a>
+<a href="SiteCalendar-uat1.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Calendar</a>
+<a href="SiteWall.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Wall</a>
+<a href="SiteWord.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Learn a word</a>
+<a href="SiteAmbassadors.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 12px; border-radius: 10px; font-size: 15px; text-decoration: none; color: #2E3650">Ambassadors</a>
+</nav>
+<div style="position: relative; flex-shrink: 0">
+<button type="button" aria-haspopup="menu" aria-expanded="{{joinOpen}}" onClick="{{toggleJoin}}" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: #B42318; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 15px">Join the community<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+<sc-if value="{{joinOpen}}" hint-placeholder-val="{{ true }}">
+<div role="menu" style="position: absolute; right: 0; top: 54px; width: 280px; padding: 8px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; gap: 6px; z-index: 5">
+<a role="menuitem" href="SiteSignIn.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #FBEAE8; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Student login</span><span style="font-size: 13px; color: #4A536B">Sign in or sign up</span></a>
+<a role="menuitem" href="StaffLogin.dc.html" style="display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 12px; background: #F2F3F6; color: #18203A; text-decoration: none"><span style="font-weight: 700; font-size: 16px">Staff login</span><span style="font-size: 13px; color: #4A536B">International Relations team</span></a>
+</div>
+</sc-if>
+</div>
+</header>
+<img src="../assets/home-hero-photo.jpg" alt="International students of the University of Craiova together with the university flag" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; object-fit: cover; object-position: 50% 100%">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; background: linear-gradient(180deg, rgba(246, 247, 250, 0.95) 0%, rgba(246, 247, 250, 0.82) 8%, rgba(120, 128, 150, 0.55) 15%, rgba(24, 32, 58, 0.72) 22%, rgba(24, 32, 58, 0.4) 42%, rgba(24, 32, 58, 0) 56%, rgba(24, 32, 58, 0) 80%, rgba(24, 32, 58, 0.55) 100%)"></div>
+
+<div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 150px 64px 0; text-align: center; color: #FFFFFF">
+<span style="font-size: 18px; font-weight: 700; color: #F2B705; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35)">Welcome to the University of Craiova</span>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 88px; line-height: 90px; letter-spacing: -2.5px; color: #FFFFFF; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35)">Meet. Connect. Belong.</h1>
+<p style="margin: 0; font-size: 21px; line-height: 31px; color: #E4E9F4; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4)">This is your community. Find your people and make Craiova feel like home.</p>
+</div>
+
+<a href="#start-here" aria-label="Scroll down to learn more" style="position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; color: #FFFFFF">
+<span style="font-size: 14px; font-weight: 700; letter-spacing: 1px; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5)">Scroll to explore</span>
+<span style="width: 48px; height: 48px; border-radius: 50%; border: 2px solid #FFFFFF; background: rgba(24, 32, 58, 0.35); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span>
+</a>
+</section>
+<main style="flex-grow: 1; display: flex; flex-direction: column">
+<section id="start-here" style="display: flex; flex-direction: column; gap: 24px; padding: 64px 64px 32px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 36px; line-height: 42px">Start here</h2>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<a href="SiteSignUp.dc.html" style="display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: 20px; background: #FFFFFF; border: 1px solid #D9DDE6; color: #18203A; text-decoration: none">
+<span style="width: 52px; height: 52px; border-radius: 14px; background: #FBEAE8; color: #B42318; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></span>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 24px">I'm new at UCV</span>
+<span style="font-size: 16px; line-height: 24px; color: #2E3650">Join the community, add your country to our map and get invited to the welcome evening.</span>
+</a>
+<a href="SiteClub.dc.html" style="display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: 20px; background: #FFFFFF; border: 1px solid #D9DDE6; color: #18203A; text-decoration: none">
+<span style="width: 52px; height: 52px; border-radius: 14px; background: #E4E9F4; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 14.6c2.6-.3 4.9 1.2 5.5 4.4"></path></svg></span>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 24px">Find your people</span>
+<span style="font-size: 16px; line-height: 24px; color: #2E3650">Our clubs are being formed now. Tell us which ones you would join.</span>
+</a>
+<a href="SiteAmbassadors.dc.html" style="display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: 20px; background: #FFFFFF; border: 1px solid #D9DDE6; color: #18203A; text-decoration: none">
+<span style="width: 52px; height: 52px; border-radius: 14px; background: #FDF3D3; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></span>
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 24px">Become an ambassador</span>
+<span style="font-size: 16px; line-height: 24px; color: #2E3650">Welcome newcomers, help run events and gain experience you can put on your CV.</span>
+</a>
+</div>
+</section>
+<section style="display: flex; flex-direction: column; gap: 24px; padding: 32px 64px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 36px; line-height: 42px">Shape our clubs</h2>
+<p style="margin: 0; max-width: 760px; font-size: 17px; line-height: 26px; color: #2E3650">Our clubs are being formed. Upvote the ones you'd join, no login needed, or propose your own.</p>
+</div>
+<a href="SiteClub.dc.html" style="display: inline-flex; align-items: center; height: 48px; padding: 0 20px; border-radius: 12px; background: #18203A; color: #FFFFFF; font-weight: 700; font-size: 15px; text-decoration: none; flex-shrink: 0">Propose a club</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<span style="font-weight: 700; font-size: 18px; line-height: 24px">Culture and conversation</span>
+<span style="font-size: 15px; line-height: 22px; color: #4A536B">Coffee, stories and traditions from home</span>
+<button type="button" aria-label="Upvote" aria-pressed="{{areas.a0.on}}" onClick="{{areas.a0.toggle}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; margin-top: 4px; border-radius: 999px; border: 1.5px solid {{areas.a0.border}}; background: {{areas.a0.bg}}; color: {{areas.a0.color}}; font-family: inherit; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>{{areas.a0.label}}</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<span style="font-weight: 700; font-size: 18px; line-height: 24px">Languages</span>
+<span style="font-size: 15px; line-height: 22px; color: #4A536B">Teach your language, learn Romanian</span>
+<button type="button" aria-label="Upvote" aria-pressed="{{areas.a1.on}}" onClick="{{areas.a1.toggle}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; margin-top: 4px; border-radius: 999px; border: 1.5px solid {{areas.a1.border}}; background: {{areas.a1.bg}}; color: {{areas.a1.color}}; font-family: inherit; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>{{areas.a1.label}}</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<span style="font-weight: 700; font-size: 18px; line-height: 24px">Film, music and arts</span>
+<span style="font-size: 15px; line-height: 22px; color: #4A536B">Screenings, open mics, creative nights</span>
+<button type="button" aria-label="Upvote" aria-pressed="{{areas.a2.on}}" onClick="{{areas.a2.toggle}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; margin-top: 4px; border-radius: 999px; border: 1.5px solid {{areas.a2.border}}; background: {{areas.a2.bg}}; color: {{areas.a2.color}}; font-family: inherit; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>{{areas.a2.label}}</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<span style="font-weight: 700; font-size: 18px; line-height: 24px">City and travel</span>
+<span style="font-size: 15px; line-height: 22px; color: #4A536B">Walks, trips and hidden spots in Craiova</span>
+<button type="button" aria-label="Upvote" aria-pressed="{{areas.a3.on}}" onClick="{{areas.a3.toggle}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; margin-top: 4px; border-radius: 999px; border: 1.5px solid {{areas.a3.border}}; background: {{areas.a3.bg}}; color: {{areas.a3.color}}; font-family: inherit; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>{{areas.a3.label}}</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<span style="font-weight: 700; font-size: 18px; line-height: 24px">Sports and wellbeing</span>
+<span style="font-size: 15px; line-height: 22px; color: #4A536B">Games, runs, yoga and fresh air</span>
+<button type="button" aria-label="Upvote" aria-pressed="{{areas.a4.on}}" onClick="{{areas.a4.toggle}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; margin-top: 4px; border-radius: 999px; border: 1.5px solid {{areas.a4.border}}; background: {{areas.a4.bg}}; color: {{areas.a4.color}}; font-family: inherit; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>{{areas.a4.label}}</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 18px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<span style="font-weight: 700; font-size: 18px; line-height: 24px">Ideas and careers</span>
+<span style="font-size: 15px; line-height: 22px; color: #4A536B">Talks, debates and future plans</span>
+<button type="button" aria-label="Upvote" aria-pressed="{{areas.a5.on}}" onClick="{{areas.a5.toggle}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; margin-top: 4px; border-radius: 999px; border: 1.5px solid {{areas.a5.border}}; background: {{areas.a5.bg}}; color: {{areas.a5.color}}; font-family: inherit; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>{{areas.a5.label}}</button>
+</div>
+</div>
+</section>
+<section id="coming-up" style="display: flex; flex-direction: column; gap: 24px; padding: 32px 64px 64px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 24px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 36px; line-height: 42px">Coming up</h2>
+<a href="SiteCalendar-uat1.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; font-size: 16px">Full calendar</a>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 820px); gap: 20px">
+<article style="display: flex; gap: 22px; align-items: center; padding: 26px; border-radius: 20px; background: #FFFFFF; border: 1px solid #D9DDE6">
+<div style="width: 84px; height: 92px; flex-shrink: 0; border-radius: 14px; background: #B42318; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 15px; font-weight: 700">Oct</span><span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 38px; line-height: 40px">21</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1">
+<span style="font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; font-weight: 800; font-size: 24px; line-height: 30px">Welcome evening</span>
+<span style="font-size: 16px; color: #4A536B">Wednesday 21 October, 17:00, [Venue]</span>
+<span style="font-size: 16px; color: #4A536B">Open to every student</span>
+</div>
+<a href="SiteWelcome.dc.html" style="display: inline-flex; align-items: center; height: 46px; padding: 0 18px; border-radius: 12px; background: #B42318; color: #FFFFFF; font-weight: 700; font-size: 15px; text-decoration: none; flex-shrink: 0">Details and itinerary</a>
+</article>
+</div>
+</section>
+</main>
+<footer style="display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 48px; padding: 28px 64px; background: #18203A; color: #C9D0E4; font-size: 15px; flex-shrink: 0"><span>UCV International Student Community, University of Craiova</span><span>Official information:&nbsp;www.ucv.ro</span></footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const picked = st.picked || {};
+    const base = [14, 11, 9, 12, 10, 7];
+    const areas = {};
+    base.forEach((n, i) => {
+      const on = !!picked[i];
+      areas['a' + i] = {
+        on: on,
+        label: String(on ? n + 1 : n),
+        bg: on ? '#1E7B4C' : '#E8F5EE', color: on ? '#FFFFFF' : '#17633D', border: '#1E7B4C',
+        toggle: () => this.setState({ picked: Object.assign({}, picked, { [i]: !on }) })
+      };
+    });
+    const joinOpen = st.joinOpen === undefined ? true : st.joinOpen;
+    return {
+      areas: areas,
+      joinOpen: joinOpen,
+      toggleJoin: () => this.setState({ joinOpen: !joinOpen }),
+      openJoin: () => this.setState({ joinOpen: true }),
+      sent: !!st.sent,
+      notSent: !st.sent,
+      sendQ: () => this.setState({ sent: true }),
+      resetQ: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
