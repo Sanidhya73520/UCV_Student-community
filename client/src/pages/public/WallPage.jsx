@@ -64,7 +64,7 @@ export function WallPage() {
       if (res) {
         setMeTooIds((prev) => {
           const next = new Set(prev);
-          if (res.hasMeToo) next.add(postId);
+          if (res.meToo) next.add(postId);
           else next.delete(postId);
           return next;
         });
