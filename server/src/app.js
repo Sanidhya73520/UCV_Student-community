@@ -9,6 +9,8 @@ import { loadSession } from './middleware/session.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 import apiRouter from './routes/index.js';
 
+import { connectDB } from './db/connect.js';
+
 const app = express();
 
 // Trust proxy for Vercel and reverse proxies
@@ -89,6 +91,19 @@ app.use(
 // CSRF Origin & Content-Type validation on non-GET
 app.use(csrfAndContentTypeCheck);
 
+
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error('Database connection failed:', error);
+    res.status(503).json({
+      success: false,
+      message: 'Database unavailable',
+    });
+  }
+});
 // Load session from ucv_sid cookie
 app.use(loadSession);
 
