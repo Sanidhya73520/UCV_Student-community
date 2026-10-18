@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Calendar, MessageSquare, MapPin, Sparkles, ArrowRight, Quote, CheckCircle2 } from 'lucide-react';
 import { Skeleton } from '../../components/Skeleton.jsx';
@@ -58,7 +58,15 @@ export function WallPage() {
     onRefresh: fetchWall
   });
 
+  const pendingMeTooRef = useRef(new Set());
+  const [pendingMeTooIds, setPendingMeTooIds] = useState(new Set());
+
   const handleToggleMeToo = async (postId) => {
+
+    if (pendingMeTooRef.current.has(postId)) return;
+    pendingMeTooRef.current.add(postId);
+    setPendingMeTooIds((prev) => new Set(prev).add(postId));
+
     try {
       const res = await api.post('/public/me-too/toggle', { wallPostId: postId });
       if (res) {
@@ -81,7 +89,15 @@ export function WallPage() {
       }
     } catch (err) {
       console.error('Me too failed:', err);
+    }finally{
+      pendingMeTooRef.current.delete(postId);
+      setPendingMeTooIds((prev) => {
+        const next = new Set(prev);
+        next.delete(postId);
+        return next;
+      });
     }
+
   };
 
   const currentQuestion = data?.currentQuestion;
@@ -528,6 +544,7 @@ export function WallPage() {
                         type="button"
                         aria-pressed={isMeToo}
                         onClick={() => handleToggleMeToo(a.id)}
+                        disabled={pendingMeTooIds.has(a.id)}
                         style={{
                           display: 'inline-flex',
                           alignItems: 'center',

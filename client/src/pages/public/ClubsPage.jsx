@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import { Skeleton } from '../../components/Skeleton.jsx';
@@ -29,31 +29,78 @@ export function ClubsPage() {
     fetchClubs();
   }, []);
 
-  const handleUpvote = async (areaId) => {
-    try {
-      const res = await api.post('/public/upvotes/toggle', { clubAreaId: areaId });
-      if (res) {
-        setUpvotedIds((prev) => {
-          const next = new Set(prev);
-          if (res.upvoted) next.add(areaId);
-          else next.delete(areaId);
-          return next;
-        });
+  // const handleUpvote = async (areaId) => {
+  //   try {
+  //     const res = await api.post('/public/upvotes/toggle', { clubAreaId: areaId });
+  //     if (res) {
+  //       setUpvotedIds((prev) => {
+  //         const next = new Set(prev);
+  //         if (res.upvoted) next.add(areaId);
+  //         else next.delete(areaId);
+  //         return next;
+  //       });
 
-        setData((prev) => {
-          if (!prev) return prev;
-          return {
-            ...prev,
-            clubAreas: prev.clubAreas.map((a) =>
-              a.id === areaId ? { ...a, upvoteCount: res.upvoteCount } : a
-            )
-          };
-        });
-      }
-    } catch (err) {
-      console.error('Upvote failed:', err);
+  //       setData((prev) => {
+  //         if (!prev) return prev;
+  //         return {
+  //           ...prev,
+  //           clubAreas: prev.clubAreas.map((a) =>
+  //             a.id === areaId ? { ...a, upvoteCount: res.upvoteCount } : a
+  //           )
+  //         };
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.error('Upvote failed:', err);
+  //   }
+  // };
+     
+  
+const pendingUpvoteRef = useRef(new Set());
+const [pendingUpvoteIds, setPendingUpvoteIds] = useState(new Set());
+
+const handleUpvote = async (areaId) => {
+  if (pendingUpvoteRef.current.has(areaId)) return;
+
+  pendingUpvoteRef.current.add(areaId);
+  setPendingUpvoteIds((prev) => new Set(prev).add(areaId));
+
+  try {
+    const res = await api.post('/public/upvotes/toggle', {
+      clubAreaId: areaId,
+    });
+
+    if (res) {
+      setUpvotedIds((prev) => {
+        const next = new Set(prev);
+        if (res.upvoted) next.add(areaId);
+        else next.delete(areaId);
+        return next;
+      });
+
+      setData((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          clubAreas: prev.clubAreas.map((a) =>
+            a.id === areaId
+              ? { ...a, upvoteCount: res.upvoteCount }
+              : a
+          ),
+        };
+      });
     }
-  };
+  } catch (err) {
+    console.error('Upvote failed:', err);
+  } finally {
+    pendingUpvoteRef.current.delete(areaId);
+    setPendingUpvoteIds((prev) => {
+      const next = new Set(prev);
+      next.delete(areaId);
+      return next;
+    });
+  }
+};
 
   const clubAreas = data?.clubAreas || [];
   const openClubs = data?.openClubs || [];
@@ -154,6 +201,7 @@ export function ClubsPage() {
                     aria-label={`Upvote ${area.name}`}
                     aria-pressed={isUpvoted}
                     onClick={() => handleUpvote(area.id)}
+                    disabled={pendingUpvoteIds.has(area.id)}
                     style={{
                       alignSelf: 'flex-start',
                       display: 'inline-flex',
@@ -169,7 +217,8 @@ export function ClubsPage() {
                       fontFamily: 'inherit',
                       fontWeight: 700,
                       fontSize: '15px',
-                      cursor: 'pointer',
+                      // cursor: 'pointer',
+                      cursor: pendingUpvoteIds.has(area.id) ? 'wait' : 'pointer',
                       transition: 'all 150ms ease'
                     }}
                   >

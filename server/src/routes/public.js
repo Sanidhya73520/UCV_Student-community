@@ -33,7 +33,7 @@ function getOrSetVoterKey(req, res) {
     res.cookie('voterKey', key, {
       maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
       httpOnly: true,
-      sameSite: 'lax',
+      sameSite: env.NODE_ENV === 'production' ? 'none' : 'lax',
       secure: env.NODE_ENV === 'production',
       path: '/'
     });
