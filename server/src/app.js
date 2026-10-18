@@ -13,6 +13,16 @@ import { connectDB } from './db/connect.js';
 
 const app = express();
 
+
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'UCV API Server is running',
+    health: '/api/health'
+  });
+});
+
+
 app.get('/__debug', (req, res) => {
   res.status(200).json({
     ok: true,
