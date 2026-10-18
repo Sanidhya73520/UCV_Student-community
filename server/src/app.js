@@ -13,6 +13,13 @@ import { connectDB } from './db/connect.js';
 
 const app = express();
 
+app.get('/__debug', (req, res) => {
+  res.status(200).json({
+    ok: true,
+    message: 'Express app is responding'
+  });
+});
+
 // Trust proxy for Vercel and reverse proxies
 app.set('trust proxy', 1);
 
