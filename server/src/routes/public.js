@@ -346,6 +346,17 @@ router.get('/ambassadors', async (req, res, next) => {
   }
 });
 
+// 8b. Site Settings
+router.get('/settings', async (req, res, next) => {
+  try {
+    setPublicCache(res);
+    const settings = (await SiteSettings.findOne({}).lean()) || {};
+    res.json({ ok: true, settings });
+  } catch (err) {
+    next(err);
+  }
+});
+
 // 9. Privacy Notice
 router.get('/privacy', async (req, res, next) => {
   try {

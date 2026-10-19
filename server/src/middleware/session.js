@@ -10,7 +10,14 @@ export async function loadSession(req, res, next) {
   req.session = null;
   req.user = null;
 
-  const cookieToken = req.cookies?.ucv_sid;
+  let cookieToken = null;
+  const authHeader = req.headers['authorization'] || req.headers['Authorization'];
+  if (authHeader && typeof authHeader === 'string' && authHeader.toLowerCase().startsWith('bearer ')) {
+    cookieToken = authHeader.slice(7).trim();
+  }
+  if (!cookieToken) {
+        cookieToken = req.cookies?.ucv_sid;
+  }
   if (!cookieToken) {
     return next();
   }

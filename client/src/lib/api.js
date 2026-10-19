@@ -14,6 +14,37 @@ const API_BASE_URL = (
   '/api'
 ).replace(/\/+$/, '');
 
+
+export function getAuthToken() {
+  try {
+    return typeof window !== 'undefined' ? localStorage.getItem('ucv_token') : null;
+  } catch {
+    return null;
+  }
+}
+export function setAuthToken(token) {
+  try {
+    if (typeof window !== 'undefined') {
+      if (token) {
+        localStorage.setItem('ucv_token', token);
+      } else {
+        localStorage.removeItem('ucv_token');
+      }
+    }
+  } catch {
+    // Ignore storage quota / private browsing errors
+  }
+}
+export function clearAuthToken() {
+  try {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('ucv_token');
+    }
+  } catch {
+    // Ignore
+  }
+}
+
 export async function apiFetch(endpoint, options = {}) {
   const cleanEndpoint = endpoint.startsWith('http')
     ? endpoint
@@ -26,6 +57,12 @@ export async function apiFetch(endpoint, options = {}) {
   const headers = { ...options.headers };
   const method = (options.method || 'GET').toUpperCase();
   const isStateChanging = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(method);
+
+    // Attach Bearer token from localStorage for iOS WebKit & cross-origin compatibility
+  const token = getAuthToken();
+  if (token && !headers['Authorization'] && !headers['authorization']) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
 
   if (
     (options.body !== undefined || isStateChanging) &&
@@ -91,6 +128,9 @@ export async function apiFetch(endpoint, options = {}) {
   }
 
   if (!response.ok) {
+      if (response.status === 401) {
+      clearAuthToken();
+    }
     const errorData = data?.error || {};
     const code = errorData.code || 'UNKNOWN_ERROR';
     const message = errorData.message || response.statusText || 'Request failed';
@@ -106,7 +146,10 @@ export async function apiFetch(endpoint, options = {}) {
 
     throw new ApiError(message, code, fields, response.status);
   }
-
+  // Automatically persist session token if returned in response
+  if (data && typeof data === 'object' && data.token) {
+    setAuthToken(data.token);
+  }
   return data;
 }
 

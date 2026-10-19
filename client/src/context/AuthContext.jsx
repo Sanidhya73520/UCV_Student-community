@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { api } from '../lib/api.js';
+import { api, clearAuthToken } from '../lib/api.js';
 
 const AuthContext = createContext(null);
 
@@ -28,6 +28,7 @@ export function AuthProvider({ children }) {
     } catch {
       // Ignore logout network errors
     } finally {
+       clearAuthToken();
       setUser(null);
     }
   }, []);

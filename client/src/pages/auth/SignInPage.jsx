@@ -10,7 +10,7 @@ import { PasswordField } from '../../components/PasswordField.jsx';
 import { Card } from '../../components/Card.jsx';
 import { ErrorAlert } from '../../components/ErrorAlert.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
-import { api } from '../../lib/api.js';
+import { api, setAuthToken } from '../../lib/api.js';
 
 export function SignInPage() {
   const [authStatus, setAuthStatus] = useState('idle'); // 'idle' | 'pending' | 'rejected'
@@ -36,6 +36,9 @@ export function SignInPage() {
     setErrorMessage(null);
     try {
       const res = await api.post('/auth/signin', data);
+      if (res?.token) {
+        setAuthToken(res.token);
+      }
       await refreshUser();
       // Redirect staff/admin to /staff, student to /student
       if (res?.user?.role === 'admin' || res?.user?.role === 'staff') {

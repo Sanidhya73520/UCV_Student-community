@@ -69,6 +69,8 @@ app.use((req, res, next) => {
 
 // Configure CORS for allowed origins across all environments
 const allowedOrigins = [
+    'https://ucvinternationalstudent-community.vercel.app',
+  'https://ucvstudent-communityserver.vercel.app',
   env.APP_URL,
   ...env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean)
 ];
@@ -94,7 +96,19 @@ app.use(
           return allowed === origin;
         }
       });
-      if (isAllowed) {
+            // Also allow any vercel.app deployment for preview / production
+      let isVercelDomain = false;
+      try {
+        const parsedHost = new URL(origin).hostname;
+        if (parsedHost.endsWith('.vercel.app')) {
+          isVercelDomain = true;
+        }
+      } catch {
+        if (typeof origin === 'string' && origin.endsWith('.vercel.app')) {
+          isVercelDomain = true;
+        }
+      }
+      if (isAllowed || isVercelDomain) {
         return callback(null, true);
       }
       return callback(null, false);

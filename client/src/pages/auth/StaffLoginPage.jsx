@@ -10,7 +10,7 @@ import { PasswordField } from '../../components/PasswordField.jsx';
 import { Card } from '../../components/Card.jsx';
 import { ErrorAlert } from '../../components/ErrorAlert.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
-import { api } from '../../lib/api.js';
+import { api, setAuthToken } from '../../lib/api.js';
 
 export function StaffLoginPage() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -31,6 +31,9 @@ export function StaffLoginPage() {
     setErrorMessage(null);
     try {
       const res = await api.post('/auth/staff-login', data);
+            if (res?.token) {
+        setAuthToken(res.token);
+      }
       await refreshUser();
       if (res?.user?.role === 'student') {
         navigate('/student', { replace: true });

@@ -26,20 +26,15 @@ const router = Router();
 const DUMMY_HASH = '$2a$12$e8p4l8ZfVbN7g8xQ2j9Esu1Y9f1b2c3d4e5f6g7h8i9j0k1l2m3n4';
 
 // Helper to set session cookie
-function setSessionCookie(res, token, maxAgeMs) {
-  // res.cookie('ucv_sid', token, {
-  //   httpOnly: true,
-  //   sameSite: 'lax',
-  //   secure: env.NODE_ENV === 'production',
-  //   maxAge: maxAgeMs,
-  //   path: '/'
-  // });
+function setSessionCookie(res, token, maxAgeMs = 14 * 24 * 60 * 60 * 1000) { 
   res.cookie('ucv_sid', token, {
-  httpOnly: true,
-  secure: true,
-  sameSite: 'none',
-  path: '/',
-});
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    maxAge: maxAgeMs,
+    path: '/',
+    partitioned: true
+  });
 }
 
 // 1. Sign Up (Students only)
@@ -209,6 +204,7 @@ router.post(
         setSessionCookie(res, rawToken, slidingMs);
 
         return res.json({
+          token: rawToken,
           user: {
             id: user._id.toString(),
             role: user.role,
@@ -271,6 +267,7 @@ router.post(
         setSessionCookie(res, rawToken, slidingMs);
 
         return res.json({
+          token: rawToken,
           user: {
             id: user._id.toString(),
             role: user.role,
@@ -372,6 +369,7 @@ router.post(
         setSessionCookie(res, rawToken, slidingMs);
 
         return res.json({
+          token: rawToken,
           user: {
             id: user._id.toString(),
             role: user.role,
@@ -451,6 +449,7 @@ router.post(
       setSessionCookie(res, rawToken, slidingMs);
 
       return res.json({
+        token: rawToken,
         user: {
           id: user._id.toString(),
           role: user.role,
@@ -470,9 +469,16 @@ router.post(
 // 4. Log Out
 router.post('/logout', async (req, res, next) => {
   try {
-    const cookieToken = req.cookies?.ucv_sid;
-    if (cookieToken) {
-      const tokenHash = hashToken(cookieToken);
+        let rawToken = null;
+    const authHeader = req.headers['authorization'] || req.headers['Authorization'];
+    if (authHeader && typeof authHeader === 'string' && authHeader.toLowerCase().startsWith('bearer ')) {
+      rawToken = authHeader.slice(7).trim();
+    }
+    if (!rawToken) {
+      rawToken = req.cookies?.ucv_sid;
+    }
+    if (rawToken) {
+      const tokenHash = hashToken(rawToken);
       await Session.deleteOne({ tokenHash });
     }
     res.clearCookie('ucv_sid', { path: '/' });

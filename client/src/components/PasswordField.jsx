@@ -15,6 +15,9 @@ export const PasswordField = forwardRef(function PasswordField(
         type={showPassword ? 'text' : 'password'}
         rightElement={rightElement}
         inputStyle={{ paddingRight: '44px' }}
+        autoCapitalize="none"
+        autoCorrect="off"
+        spellCheck={false}
         {...props}
       />
       <button
