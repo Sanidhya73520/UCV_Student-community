@@ -66,7 +66,7 @@ export function useWallSync({ onUpdate, onRefresh, enabled = true, streamUrl = '
         broadcastChannel.onmessage = (event) => {
           if (event.data?.type === 'WALL_UPDATED') {
             onUpdateRef.current?.(event.data);
-            onRefreshRef.current?.();
+            // onRefreshRef.current?.();
           }
         };
       } catch {
@@ -78,7 +78,7 @@ export function useWallSync({ onUpdate, onRefresh, enabled = true, streamUrl = '
     const handleCustomEvent = (event) => {
       if (event.detail) {
         onUpdateRef.current?.(event.detail);
-        onRefreshRef.current?.();
+        // onRefreshRef.current?.();
       }
     };
     window.addEventListener('ucv_wall_update', handleCustomEvent);
@@ -116,11 +116,11 @@ export function useWallSync({ onUpdate, onRefresh, enabled = true, streamUrl = '
 
         eventSource.onerror = () => {
           // If SSE disconnects, ensure heartbeat poll
-          if (!pollInterval) {
-            pollInterval = setInterval(() => {
-              onRefreshRef.current?.();
-            }, 4000);
-          }
+          // if (!pollInterval) {
+          //   pollInterval = setInterval(() => {
+          //     onRefreshRef.current?.();
+          //   }, 4000);
+          // }
         };
       } catch (err) {
         console.warn('[WALL_SSE] SSE connection failed, using fallback:', err);

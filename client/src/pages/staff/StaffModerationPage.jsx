@@ -70,19 +70,28 @@ export function StaffModerationPage() {
   }, [editingItem]);
 
   // Real-time synchronization across staff and student actions
-  useWallSync({
-    onUpdate: (evt) => {
-      // Don't refetch if currently editing in modal
-      if (!editingItem) {
-        fetchModeration();
-      }
-    },
-    onRefresh: () => {
-      if (!editingItem) {
-        fetchModeration();
-      }
+  // useWallSync({
+  //   onUpdate: (evt) => {
+  //     // Don't refetch if currently editing in modal
+  //     if (!editingItem) {
+  //       fetchModeration();
+  //     }
+  //   },
+  //   onRefresh: () => {
+  //     if (!editingItem) {
+  //       fetchModeration();
+  //     }
+  //   }
+  // });
+
+  // Real-time synchronization across staff and student actions
+useWallSync({
+  onUpdate: () => {
+    if (!editingItem) {
+      fetchModeration();
     }
-  });
+  }
+});
 
   const handleRemove = async (item) => {
     try {
