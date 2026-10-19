@@ -122,9 +122,9 @@ export function AmbassadorsPage() {
             >
               We're looking for 10 ambassadors this year
             </span>
-            <span style={{ fontSize: '16px', lineHeight: '24px', color: '#E4E9F4' }}>
+            {/* <span style={{ fontSize: '16px', lineHeight: '24px', color: '#E4E9F4' }}>
               International and Romanian students, from any faculty.
-            </span>
+            </span> */}
             {isOpen && (
               <Link
                 to={isStudent ? '/student/ambassadors' : '/signin'}
