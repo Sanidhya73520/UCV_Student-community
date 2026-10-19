@@ -619,9 +619,9 @@ export function ActivityDetailPage() {
               {(activity.whatToBring && activity.whatToBring.length > 0
                 ? activity.whatToBring
                 : [
-                    'Your phone, to join the community on the spot',
-                    'A friend who is new in Craiova',
-                    'Optional: something small from home to show others'
+                    'An open mind and a willingness to meet new people',
+                    'Your stories, experiences, and interests to share',
+                    'A smile and positive energy to make everyone feel welcome'
                   ]
               ).map((item, i) => (
                 <li key={i}>{item}</li>
@@ -667,8 +667,8 @@ export function ActivityDetailPage() {
               {(activity.goodToKnow && activity.goodToKnow.length > 0
                 ? activity.goodToKnow
                 : [
-                    'Open to all international students; Romanian students are welcome too',
-                    'The evening is in English',
+                    'The event will be conducted in English',
+                    'Please arrive on time to make the most of the experience',
                     'Questions? Write to the International Relations Department'
                   ]
               ).map((item, i) => (

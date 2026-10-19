@@ -865,7 +865,7 @@ export function HomePage() {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#2E3650' }}>
                       <CheckCircle2 size={15} color="#1E7B4C" />
-                      <span>Certificate of leadership for your CV</span>
+                      <span>Certificate of Volunteering</span>
                     </div>
                   </div>
                 </div>

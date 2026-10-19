@@ -86,35 +86,35 @@ export function WordsPage() {
     const mockupWords = [
       {
         id: 'mock-1',
-        word: 'sobremesa',
-        language: 'Spanish',
-        meaning: 'The time spent talking around the table after a meal.',
-        sharedBy: 'Lucía',
-        countryName: 'Spain'
+        word: 'Retrouvailles',
+        language: 'French',
+        meaning: 'Some reunions feel like finding a piece of yourself again.',
+        sharedBy: '',
+        countryName: ''
       },
       {
         id: 'mock-2',
-        word: 'kolay gelsin',
-        language: 'Turkish',
-        meaning: 'Said to someone at work: may it come easily.',
-        sharedBy: 'Elif',
-        countryName: 'Türkiye'
+        word: 'Namaste',
+        language: 'Hindi',
+        meaning: 'Every new friendship begins with a simple hello.',
+        sharedBy: '',
+        countryName: ''
       },
       {
         id: 'mock-3',
-        word: 'retrouvailles',
-        language: 'French',
-        meaning: 'The joy of seeing someone again after a long time.',
-        sharedBy: 'Camille',
-        countryName: 'France'
+        word: 'Kolay gelsin',
+        language: 'Turkish',
+        meaning: 'May the work ahead feel a little lighter.',
+        sharedBy: '',
+        countryName: ''
       },
       {
         id: 'mock-4',
-        word: 'namaste',
-        language: 'Hindi',
-        meaning: 'A respectful hello, with hands pressed together.',
-        sharedBy: 'Aarav',
-        countryName: 'India'
+        word: 'Sobremesa',
+        language: 'Spanish',
+        meaning: 'The best conversations begin when the meal ends.',
+        sharedBy: '',
+        countryName: ''
       }
     ];
 

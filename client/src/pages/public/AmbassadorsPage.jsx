@@ -120,10 +120,10 @@ export function AmbassadorsPage() {
                 color: '#FFFFFF'
               }}
             >
-              We're looking for {numberWanted} ambassadors this year
+              We're looking for 10 ambassadors this year
             </span>
             <span style={{ fontSize: '16px', lineHeight: '24px', color: '#E4E9F4' }}>
-              International and Romanian students, from any faculty. Apply by {applyByDate}.
+              International and Romanian students, from any faculty.
             </span>
             {isOpen && (
               <Link
