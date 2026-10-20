@@ -10,8 +10,19 @@ export function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+const CANONICAL_APP_URL = 'https://ucvinternationalstudent-community.vercel.app';
+export function getAppUrl() {
+  const url = env.APP_URL?.trim();
+  if (!url || url.includes('localhost') || url.includes('127.0.0.1')) {
+    return CANONICAL_APP_URL;
+  }
+  return url.replace(/\/+$/, '');
+}
+
+
 function emailWrapper({ title, contentHtml, buttonText, buttonUrl, footerExtra = '' }) {
-  const fullUrl = buttonUrl.startsWith('http') ? buttonUrl : `${env.APP_URL}${buttonUrl}`;
+    const baseUrl = getAppUrl();
+  const fullUrl = buttonUrl.startsWith('http') ? buttonUrl : `${baseUrl}${buttonUrl.startsWith('/') ? '' : '/'}${buttonUrl}`;
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -83,7 +94,7 @@ function emailWrapper({ title, contentHtml, buttonText, buttonUrl, footerExtra =
             <td style="padding-top: 20px; border-top: 1px solid #D9DDE6; font-size: 12px; color: #4A536B; line-height: 1.5;">
               <p style="margin: 0 0 6px 0;">International Relations Department, University of Craiova.</p>
               ${footerExtra ? `<p style="margin: 0 0 6px 0;">${footerExtra}</p>` : ''}
-              <p style="margin: 0;">You can choose which emails you get in <a href="${env.APP_URL}/student/profile" style="color: #B42318;">My profile</a>.</p>
+               <p style="margin: 0;">You can choose which emails you get in <a href="${getAppUrl()}/student/profile" style="color: #B42318;">My profile</a>.</p>
             </td>
           </tr>
         </table>
@@ -112,7 +123,7 @@ Good news: the International Relations Department has approved your registration
 
 You can now sign in with the email and password you chose when you signed up.
 
-Sign in: ${env.APP_URL}/signin
+Sign in: ${getAppUrl()}/signin
 
 International Relations Department, University of Craiova.`;
 
@@ -139,7 +150,7 @@ International Relations Department, University of Craiova.`;
       <p style="margin: 0 0 20px 0;">Sign in with the details below. On your first sign-in you'll be asked to set your own password.</p>
       
       <div style="background-color: #F2F3F6; border-radius: 8px; padding: 16px; margin-bottom: 20px; font-family: monospace; font-size: 14px;">
-        <p style="margin: 0 0 6px 0;"><strong>Login page:</strong> ${env.APP_URL}/staff/login</p>
+        <p style="margin: 0 0 6px 0;"><strong>Login page:</strong> ${getAppUrl()}/staff/login</p>
         <p style="margin: 0 0 6px 0;"><strong>Your email:</strong> ${escapeHtml(recipientEmail)}</p>
         <p style="margin: 0;"><strong>Temporary password:</strong> ${escapeHtml(tempPassword)}</p>
       </div>
@@ -150,13 +161,13 @@ International Relations Department, University of Craiova.`;
 
 ${sender} has invited you to help manage the UCV International Student Community platform for the International Relations Department.
 
-Login page: ${env.APP_URL}/staff/login
+Login page: ${getAppUrl()}/staff/login
 Your email: ${recipientEmail}
 Temporary password: ${tempPassword}
 
 Valid for 7 days and for one sign-in only. You'll choose your own password straight after.
 
-Sign in: ${env.APP_URL}/staff/login`;
+Sign in: ${getAppUrl()}/staff/login`;
 
     return {
       subject: 'You are invited to the UCV International Student Community staff area',
@@ -183,7 +194,7 @@ Sign in: ${env.APP_URL}/staff/login`;
     const text = `Hi ${firstName}, someone asked to reset the password for your UCV International Student Community account.
 
 If it was you, choose a new password below. The link works for 1 hour and only once.
-${env.APP_URL}${resetUrl}
+${getAppUrl()}${resetUrl}
 
 If it wasn't you, ignore this email; your password stays the same.`;
 
@@ -210,7 +221,7 @@ If it wasn't you, ignore this email; your password stays the same.`;
     const text = `Hi ${firstName}, the International Relations Department has added you to the UCV International Student Community.
 
 Choose your password to sign in. The link works for 7 days.
-${env.APP_URL}${activateUrl}`;
+${getAppUrl()}${activateUrl}`;
 
     return {
       subject: 'Finish setting up your account',
@@ -244,8 +255,8 @@ Your account is still waiting for approval. We'll email you as soon as it's appr
       : `Hi, someone tried to create a new account with this email. You already have one.
 
 If it was you, just sign in; if you forgot your password, you can reset it.
-Sign in: ${env.APP_URL}/signin
-Reset password: ${env.APP_URL}/forgot-password`;
+Sign in: ${getAppUrl()}/signin
+Reset password: ${getAppUrl()}/forgot-password`;
 
     return {
       subject: 'You already have an account',
@@ -273,7 +284,7 @@ Reset password: ${env.APP_URL}/forgot-password`;
     `;
     const text = `Hi ${firstName}, the International Relations Team answered your question: "${preview}".
 
-See the answer: ${env.APP_URL}/student/questions`;
+See the answer: ${getAppUrl()}/student/questions`;
 
     return {
       subject: 'Your question has an answer',
@@ -299,7 +310,7 @@ See the answer: ${env.APP_URL}/student/questions`;
 When & Where: ${dateStr} ${venue ? `at ${venue}` : ''}
 ${description || ''}
 
-See the activity: ${env.APP_URL}/student/events`;
+See the activity: ${getAppUrl()}/student/events`;
 
     return {
       subject: `New activity: ${title}`,
@@ -326,7 +337,7 @@ See the activity: ${env.APP_URL}/student/events`;
 Time & Location: ${dateStr} ${venue ? `at ${venue}` : ''}
 We look forward to seeing you there.
 
-See itinerary: ${env.APP_URL}/activities`;
+See itinerary: ${getAppUrl()}/activities`;
 
     return {
       subject: `Tomorrow: ${title}`,
@@ -352,7 +363,7 @@ See itinerary: ${env.APP_URL}/activities`;
 ${questionText ? `Question of the month: ${questionText}` : ''}
 ${wordText ? `Word of the month: ${wordText}` : ''}
 
-Open the community: ${env.APP_URL}/student`;
+Open the community: ${getAppUrl()}/student`;
 
     return {
       subject: 'New this month in the community',

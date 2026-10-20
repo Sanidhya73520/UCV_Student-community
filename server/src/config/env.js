@@ -8,11 +8,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 
+const CANONICAL_APP_URL = 'https://ucvinternationalstudent-community.vercel.app';
+// Ensure APP_URL always resolves to the live website when in production, on Vercel, or if localhost is passed
+if (process.env.VERCEL || process.env.NODE_ENV === 'production' || !process.env.APP_URL || process.env.APP_URL.includes('localhost') || process.env.APP_URL.includes('127.0.0.1')) {
+  process.env.APP_URL = CANONICAL_APP_URL;
+}
+
+
 const envSchema = z
   .object({
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-    APP_URL: z.string().url(),
-    ALLOWED_ORIGINS: z.string().default('http://localhost:5173'),
+    APP_URL: z.string().url().default(CANONICAL_APP_URL),
+    ALLOWED_ORIGINS: z.string().default('https://ucvinternationalstudent-community.vercel.app,http://localhost:5173'),
     PORT: z.coerce.number().default(4000),
     API_BASE_URL: z.string().default('http://localhost:4000/api'),
     APP_TIMEZONE: z.string().default('Europe/Bucharest'),
@@ -84,7 +91,7 @@ export const env = parsed.success
   ? parsed.data
   : {
       NODE_ENV: process.env.NODE_ENV || 'development',
-      APP_URL: process.env.APP_URL || 'http://localhost:5173',
+       APP_URL: process.env.APP_URL || CANONICAL_APP_URL,
       ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS || 'http://localhost:5173',
       PORT: Number(process.env.PORT) || 4000,
       API_BASE_URL: process.env.API_BASE_URL || 'http://localhost:4000/api',

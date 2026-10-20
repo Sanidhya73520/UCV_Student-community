@@ -44,7 +44,7 @@ import {
   addStudentSchema
 } from '../../../shared/schemas/staff.js';
 import { queueEmail } from '../services/mailer.js';
-import { renderTemplate, emailTemplates } from '../emails/templates.js';
+import { renderTemplate, emailTemplates, getAppUrl } from '../emails/templates.js';
 import { PasswordResetToken } from '../models/PasswordResetToken.js';
 import { hashToken } from '../middleware/session.js';
 import { env } from '../config/env.js';
@@ -400,7 +400,7 @@ router.post('/approvals/:id/approve', async (req, res, next) => {
       const emailContent = renderTemplate('approval', {
         firstName: student.firstName || student.fullName?.split(' ')[0],
         fullName: student.fullName,
-        loginUrl: `${env.APP_URL}/signin`
+        loginUrl: `${getAppUrl()}/signin`
       });
 
       await queueEmail({
@@ -599,7 +599,7 @@ router.post('/questions/:id/answer', validate(answerQuestionSchema), async (req,
             questionText: question.text,
             question: question.text,
             answer: answer,
-            questionsUrl: `${env.APP_URL}/student/questions`
+            questionsUrl: `${getAppUrl()}/student/questions`
           });
 
           await queueEmail({
@@ -1971,7 +1971,7 @@ router.post('/accounts/invite', requireAdmin, async (req, res, next) => {
       fullName: staff.fullName,
       email: staff.email,
       tempPassword,
-      loginUrl: `${env.APP_URL}/staff/login`
+       loginUrl: `${getAppUrl()}/staff/login`
     });
 
     await queueEmail({
@@ -2079,7 +2079,7 @@ router.post('/accounts/:id/resend', requireAdmin, async (req, res, next) => {
       fullName: staff.fullName,
       email: staff.email,
       tempPassword,
-      loginUrl: `${env.APP_URL}/staff/login`
+      loginUrl: `${getAppUrl()}/staff/login`
     });
 
     await queueEmail({
@@ -2308,7 +2308,7 @@ router.post('/import/commit', requireAdmin, async (req, res, next) => {
         const emailContent = renderTemplate('approval', {
           firstName: r.firstName,
           fullName: `${r.firstName} ${r.lastName || ''}`.trim(),
-          loginUrl: `${env.APP_URL}/signin`
+          loginUrl: `${getAppUrl()}/signin`
         });
 
         await queueEmail({
