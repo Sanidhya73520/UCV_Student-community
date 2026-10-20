@@ -91,7 +91,7 @@ export async function queueEmail({
     if (existing) {
       console.log(`[MAILER] Skipped duplicate email (${idempotencyKey}) to ${normalizedRecipient}`);
       if (immediate && existing.status === 'queued') {
-        triggerEmailWorker();
+        await processQueueItem(existing);
       }
       return existing;
     }
@@ -108,6 +108,9 @@ export async function queueEmail({
     });
     if (existingApproval) {
       console.log(`[MAILER] Approval email already active for ${normalizedRecipient}`);
+       if (immediate && existingApproval.status === 'queued') {
+        await processQueueItem(existingApproval);
+      }
       return existingApproval;
     }
   }
@@ -126,8 +129,17 @@ export async function queueEmail({
 
   await emailItem.save();
 
-  // Wake worker immediately for rapid non-blocking delivery
-  triggerEmailWorker();
+  // If immediate delivery requested (default for transactional/account emails), process now
+  if (immediate) {
+    try {
+      await processQueueItem(emailItem);
+    } catch (err) {
+      console.error(`[MAILER] Immediate delivery error for ${emailItem._id}:`, err.message);
+    }
+  } else {
+    // Wake worker for non-immediate background jobs
+    triggerEmailWorker();
+  }
 
   return emailItem;
 }
@@ -298,9 +310,11 @@ async function emailWorkerTick() {
  * Wakes up the background worker immediately.
  */
 export function triggerEmailWorker() {
-  if (!isWorkerRunning) return;
+
   setImmediate(() => {
-    emailWorkerTick();
+        emailWorkerTick().catch((err) => {
+      console.error('[MAILER] Background worker tick error:', err.message);
+    });
   });
 }
 
@@ -348,11 +362,29 @@ export async function stopEmailWorker() {
 }
 
 /**
- * Manual queue processing helper for backwards-compatibility with cron endpoints.
+  * Manual queue processing helper for backwards-compatibility and cron endpoints.
+ * Actively processes pending queued jobs up to batchLimit.
  */
-export async function processEmailOutbox() {
-  triggerEmailWorker();
+export async function processEmailOutbox(batchLimit = 20) {
+  await recoverStaleEmailJobs();
+  const now = new Date();
+  const pendingJobs = await EmailQueue.find({
+    status: 'queued',
+    $or: [{ nextAttemptAt: null }, { nextAttemptAt: { $lte: now } }]
+  })
+    .sort({ priority: 1, createdAt: 1 })
+    .limit(batchLimit);
+  let processedCount = 0;
+  for (const job of pendingJobs) {
+    try {
+      await processQueueItem(job);
+      processedCount++;
+    } catch (err) {
+      console.error(`[MAILER] Error processing queued job ${job._id}:`, err.message);
+    }
+  }
+
   const queuedCount = await EmailQueue.countDocuments({ status: 'queued' });
   const processingCount = await EmailQueue.countDocuments({ status: 'processing' });
-  return { queued: queuedCount, processing: processingCount };
+  return { processed: processedCount, queued: queuedCount, processing: processingCount };
 }
