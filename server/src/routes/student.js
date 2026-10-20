@@ -53,8 +53,9 @@ router.get('/dashboard', async (req, res, next) => {
     }
 
     const voterKeys = [student._id.toString()];
-    if (req.cookies?.voterKey) {
-      voterKeys.push(req.cookies.voterKey);
+     const extraVoterKey = req.headers['x-voter-key'] || req.cookies?.voterKey;
+    if (extraVoterKey && !voterKeys.includes(extraVoterKey)) {
+      voterKeys.push(extraVoterKey);
     }
 
     const [

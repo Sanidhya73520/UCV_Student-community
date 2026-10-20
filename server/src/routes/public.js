@@ -25,20 +25,26 @@ function setPublicCache(res) {
   res.setHeader('Cache-Control', 'public, s-maxage=30, stale-while-revalidate=300');
 }
 
-// VoterKey cookie helper for anonymous upvotes & Me Too
+// VoterKey helper for anonymous upvotes & Me Too (supports X-Voter-Key header, body, and cookie)
 function getOrSetVoterKey(req, res) {
-  let key = req.cookies?.voterKey;
-  if (!key) {
-    key = crypto.randomBytes(16).toString('hex');
-    res.cookie('voterKey', key, {
-      maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
-      httpOnly: true,
-      sameSite: env.NODE_ENV === 'production' ? 'none' : 'lax',
-      secure: env.NODE_ENV === 'production',
-      path: '/'
-    });
+   if (req.user) {
+    return req.user._id.toString();
   }
-  return req.user ? req.user._id.toString() : key;
+  let key = req.headers['x-voter-key'] || req.body?.voterKey || req.cookies?.voterKey;
+  if (!key || typeof key !== 'string' || key.trim().length === 0) {
+    key = crypto.randomBytes(16).toString('hex');
+      } else {
+    key = key.trim();
+  }
+    res.cookie('voterKey', key, {
+    maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
+    partitioned: true,
+    path: '/'
+  });
+  return key;
 }
 
 // 1. Home Data
@@ -376,7 +382,7 @@ router.post(
   rateLimit({
     windowMs: 60 * 1000,
     max: 60,
-    keyGenerator: (req) => req.cookies?.voterKey || req.ip
+     keyGenerator: (req) => req.headers['x-voter-key'] || req.cookies?.voterKey || req.ip
   }),
   async (req, res, next) => {
     try {
@@ -409,7 +415,8 @@ router.post(
 
       res.json({
         upvoted,
-        upvoteCount: Math.max(0, updatedArea?.upvoteCount || 0)
+        upvoteCount: Math.max(0, updatedArea?.upvoteCount || 0),
+        voterKey
       });
     } catch (err) {
       next(err);
@@ -423,7 +430,7 @@ router.post(
   rateLimit({
     windowMs: 60 * 1000,
     max: 60,
-    keyGenerator: (req) => req.cookies?.voterKey || req.ip
+     keyGenerator: (req) => req.headers['x-voter-key'] || req.cookies?.voterKey || req.ip
   }),
   async (req, res, next) => {
     try {
@@ -464,7 +471,9 @@ router.post(
 
       res.json({
         meToo,
-        meTooCount: currentMeTooCount
+        hasMeToo: meToo,
+        meTooCount: currentMeTooCount,
+        voterKey
       });
     } catch (err) {
       next(err);
@@ -476,7 +485,9 @@ router.post(
 router.get('/votes/mine', async (req, res, next) => {
   try {
     res.setHeader('Cache-Control', 'no-store');
-    const voterKey = req.user ? req.user._id.toString() : req.cookies?.voterKey;
+    const voterKey = req.user
+      ? req.user._id.toString()
+      : (req.headers['x-voter-key'] || req.query?.voterKey || req.cookies?.voterKey);
 
     if (!voterKey) {
       return res.json({ upvotedAreaIds: [], meTooPostIds: [] });
@@ -488,6 +499,7 @@ router.get('/votes/mine', async (req, res, next) => {
     ]);
 
     res.json({
+       voterKey,
       upvotedAreaIds: upvotes.map((u) => u.clubAreaId.toString()),
       meTooPostIds: meToos.map((m) => m.wallPostId.toString())
     });

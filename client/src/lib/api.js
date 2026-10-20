@@ -45,6 +45,30 @@ export function clearAuthToken() {
   }
 }
 
+export function getVoterKey() {
+  try {
+    if (typeof window === 'undefined') return null;
+    let key = localStorage.getItem('ucv_voter_key');
+    if (!key) {
+      key = 'vk_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      localStorage.setItem('ucv_voter_key', key);
+    }
+    return key;
+  } catch {
+    return null;
+  }
+}
+export function setVoterKey(key) {
+  try {
+    if (typeof window !== 'undefined' && key) {
+      localStorage.setItem('ucv_voter_key', key);
+    }
+  } catch {
+    // Ignore
+  }
+}
+
+
 export async function apiFetch(endpoint, options = {}) {
   const cleanEndpoint = endpoint.startsWith('http')
     ? endpoint
@@ -62,6 +86,12 @@ export async function apiFetch(endpoint, options = {}) {
   const token = getAuthToken();
   if (token && !headers['Authorization'] && !headers['authorization']) {
     headers['Authorization'] = `Bearer ${token}`;
+  }
+
+    // Attach persistent Voter Key from localStorage for iOS WebKit anonymous voting & Me Too
+  const voterKey = getVoterKey();
+  if (voterKey && !headers['X-Voter-Key'] && !headers['x-voter-key']) {
+    headers['X-Voter-Key'] = voterKey;
   }
 
   if (
@@ -150,6 +180,12 @@ export async function apiFetch(endpoint, options = {}) {
   if (data && typeof data === 'object' && data.token) {
     setAuthToken(data.token);
   }
+
+    // Automatically persist voter key if returned in response
+  if (data && typeof data === 'object' && data.voterKey) {
+    setVoterKey(data.voterKey);
+  }
+
   return data;
 }
 
